@@ -10,7 +10,7 @@ class FormMeme extends Component {
 
       handleChange = (event) =>{
           this.setState({
-              
+
           })
 
       }
@@ -19,7 +19,7 @@ class FormMeme extends Component {
 
       }
 
-      this.setState({})
+    //   this.setState({})
     
     
     
@@ -44,7 +44,7 @@ class FormMeme extends Component {
 
                 </form>
           
-        
+      
     }
 }
 
