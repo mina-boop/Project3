@@ -35,17 +35,10 @@ class FormSignup extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
         <h2>Signup</h2>
-        <label htmlFor="email">Email</label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.email}
-          type="email"
-          id="email"
-          name="email"
-        />
-        <label htmlFor="password">Password</label>
+        <div>
+        <label htmlFor="password">Password: </label>
         <input
           onChange={this.handleChange}
           value={this.state.password}
@@ -53,6 +46,47 @@ class FormSignup extends Component {
           id="password"
           name="password"
         />
+        </div>
+        <div>
+        <label htmlFor="userName">User Name: </label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.userName}
+          type="text"
+          id="userName"
+          name="userName"
+        />
+        </div>
+        <div>
+        <label htmlFor="zodiacSign">Zodiac Sign: </label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.zodiacSign}
+          type="text"
+          id="zodiacSign"
+          name="zodiacSign"
+        />
+        </div>
+        <div>
+        <label htmlFor="city">City: </label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.city}
+          type="text"
+          id="city"
+          name="city"
+        />
+        </div>
+        <div>
+        <label htmlFor="profileImg" action="/upload">Profile Image: </label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.profileImg}
+          type="file"
+          id="profileImg"
+          name="profileImg"
+        />
+        </div>
         <button>Submit</button>
       </form>
     );
