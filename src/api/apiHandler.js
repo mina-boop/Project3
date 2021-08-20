@@ -44,6 +44,12 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
+  getUserInfos() {
+    return service
+      .get("/api/users/me")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
   postMemes() {
     return service
       .post("/api/memes/create")
