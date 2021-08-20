@@ -37,16 +37,7 @@ class FormSignup extends Component {
     return (
       <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
         <h2>Signup</h2>
-        <div>
-        <label htmlFor="password">Password: </label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.password}
-          type="password"
-          id="password"
-          name="password"
-        />
-        </div>
+     
         <div>
         <label htmlFor="userName">User Name: </label>
         <input
@@ -55,6 +46,16 @@ class FormSignup extends Component {
           type="text"
           id="userName"
           name="userName"
+        />
+        </div>
+        <div>
+        <label htmlFor="password">Password: </label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.password}
+          type="password"
+          id="password"
+          name="password"
         />
         </div>
         <div>

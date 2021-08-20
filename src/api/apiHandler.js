@@ -44,12 +44,12 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  // getItems() {
-  //   return service
-  //     .get("/api/items")
-  //     .then((res) => res.data)
-  //     .catch(errorHandler);
-  // },
+  postMemes() {
+    return service
+      .post("/api/memes/create")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 };
 
 export default apiHandler;
