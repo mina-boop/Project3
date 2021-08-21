@@ -50,9 +50,9 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
-  postMemes() {
+  postMemes(meme) {
     return service
-      .post("/api/memes/create")
+      .post("/api/memes/create", meme)
       .then((res) => res.data)
       .catch(errorHandler);
   },
