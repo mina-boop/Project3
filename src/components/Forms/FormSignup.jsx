@@ -3,6 +3,8 @@ import { withRouter, Redirect } from "react-router-dom";
 import { withUser } from "../Auth/withUser";
 import apiHandler from "../../api/apiHandler";
 
+import 'bulma/css/bulma.css';
+
 class FormSignup extends Component {
   state = {
     email: "",
@@ -35,11 +37,18 @@ class FormSignup extends Component {
     }
 
     return (
+
+      <div className="card">
+      <div className="card-content">
+
+
       <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
         <h2>Signup</h2>
-     
-        <div>
-        <label htmlFor="userName">User Name: </label>
+
+        <div className="field">
+       
+        <label htmlFor="userName" class="label">User Name: </label>
+        <div className="control has-icons-left">
         <input
           onChange={this.handleChange}
           value={this.state.userName}
@@ -47,9 +56,15 @@ class FormSignup extends Component {
           id="userName"
           name="userName"
         />
+        <span className="icon is-small is-left"><i className="fas fa-user"></i></span>
+
         </div>
-        <div>
-        <label htmlFor="password">Password: </label>
+        </div>
+
+        <div className="field">
+        <p className="control has-icons-left">
+        <label htmlFor="password" className="label">Password: </label>
+        
         <input
           onChange={this.handleChange}
           value={this.state.password}
@@ -57,9 +72,14 @@ class FormSignup extends Component {
           id="password"
           name="password"
         />
+         <span className="icon is-small is-left"> <i className="fas fa-lock"></i> </span>
+         </p>
+    
         </div>
-        <div>
-        <label htmlFor="zodiacSign">Zodiac Sign: </label>
+
+        <div className="field">
+        <label htmlFor="zodiacSign" className="label">Zodiac Sign: </label>
+        <div className="control">
         <input
           onChange={this.handleChange}
           value={this.state.zodiacSign}
@@ -68,8 +88,11 @@ class FormSignup extends Component {
           name="zodiacSign"
         />
         </div>
-        <div>
-        <label htmlFor="city">City: </label>
+        </div>
+
+        <div className="field">
+        <label htmlFor="city" class="label">City: </label>
+        <div className="control">
         <input
           onChange={this.handleChange}
           value={this.state.city}
@@ -78,8 +101,11 @@ class FormSignup extends Component {
           name="city"
         />
         </div>
-        <div>
-        <label htmlFor="profileImg" action="/upload">Profile Image: </label>
+        </div>
+        
+        <div className="field">
+        <label htmlFor="profileImg" action="/upload" className="label">Profile Image: </label>
+        <div className="control">
         <input
           onChange={this.handleChange}
           value={this.state.profileImg}
@@ -88,8 +114,13 @@ class FormSignup extends Component {
           name="profileImg"
         />
         </div>
+        </div>
         <button>Submit</button>
       </form>
+      </div> 
+
+      </div>
+     
     );
   }
 }

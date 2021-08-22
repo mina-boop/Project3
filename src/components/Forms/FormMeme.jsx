@@ -55,7 +55,7 @@ class FormMeme extends Component {
 
             <div>
                 <label htmlFor="searchMeme">Meme : </label>
-                <input type="text" id="searchMeme" name="searchMeme" onChange={this.handleChange} placeholder="Search meme" value="{this.state.}"/>
+                <input type="text" id="searchMeme" name="searchMeme" onChange={this.handleChange} placeholder="Search meme" value=""/>
             </div>
             <div>
                 <label htmlFor="caption1">Text 1 : </label>

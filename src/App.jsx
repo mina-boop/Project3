@@ -7,6 +7,9 @@ import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import FormMeme from "./components/Forms/FormMeme"
+import 'bulma/css/bulma.css';
+
+
 
 function App() {
   return (
