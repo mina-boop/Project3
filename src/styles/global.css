@@ -18,3 +18,14 @@ a {
 ul {
   list-style-type: none;
 }
+
+.memes{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-right: 20px;
+  float: right;
+}
+
+

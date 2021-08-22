@@ -26,18 +26,21 @@ class Home extends React.Component {
 
     return (
       <div>
-        <h1>Home Page ∆</h1>
+        <h1>All your memes here !</h1>
 
         <ul>
 
           {this.state.memes.map((meme)=>{
 
             return(
-              <div key={meme.id}>
+              <div class="memes" key={meme.id}>
               <li>
-                <img src={meme.url} alt=""/>
+                <img style={{width:150, height:150}}
+                src={meme.url} 
+                alt=""/>
               <div>
                 <label for="text">Comment:</label>
+                <br></br>
                 <textarea id="msg" name="user_message"></textarea>
               </div>  
               <button>like</button>
