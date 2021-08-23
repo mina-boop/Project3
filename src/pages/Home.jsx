@@ -12,7 +12,7 @@ class Home extends Component {
 
     axios.get("https://api.imgflip.com/get_memes")
       .then((apiResponse) => {
-      
+        console.log("im here!", apiResponse.data.data.memes)
         this.setState({
 
           memes: apiResponse.data.data.memes,
@@ -23,23 +23,23 @@ class Home extends Component {
 
 
   render() {
-  
+    console.log("haaaaallo!", this.state.memes)
 
     return (
       <div>
-        <h1>Feed :</h1>
+        <h1>All your memes here !</h1>
 
         <div className="container" >
 
           {this.state.memes.map((meme) => {
 
-            return(
-              <div key={meme.id}  className="grid">
-              <article>
-              <p>Posted by Toto at 6pm</p>
-                <img src={meme.url} alt="" className="img"/>
-              <button>like</button>
-              </article>
+            return (
+              <div key={meme.id} className="grid">
+                <article>
+                  <p>Posted by Toto at 6pm</p>
+                  <img src={meme.url} alt="" className="img" />
+                  <button>like</button>
+                </article>
               </div>
             )
           })}
