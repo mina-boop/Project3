@@ -1,9 +1,9 @@
-import React from "react";
-import axios from "axios";
-import { Component } from "react";
+// import React from "react";
+// import axios from "axios";
+// import { Component } from "react";
 
 
-class Profile extends Component {
+// class Profile extends Component {
 
 //   state = {
 //     meme: l,
@@ -20,6 +20,6 @@ class Profile extends Component {
 //   }
     
   
-// };
+//  };
 
 // export default Profile;
