@@ -7,7 +7,6 @@ import UserProvider from '../Auth/UserProvider';
 
 class FormMeme extends Component {
     state = {
-        creator: null,
         caption1: "",
         caption2: "",
         imageApi: "",
@@ -25,7 +24,6 @@ class FormMeme extends Component {
     handleCreate = (event) => {
         event.preventDefault()
         const meme = {
-            creator: this.state.creator,
             caption1: this.state.caption1,
             caption2: this.state.caption2,
             imageApi: this.state.imageApi,
@@ -33,7 +31,7 @@ class FormMeme extends Component {
         apiHandler
             .postMemes(meme)
             .then((data) => {
-                console.log(data)
+                console.log("here", data)
                 this.setState(...data);
             })
             .catch((error) => {
@@ -61,21 +59,18 @@ class FormMeme extends Component {
                     <input type="text" id="caption2" name="caption2" onChange={this.handleChange} />
                 </div>
 
-            
-         
-            <div>
-                <label htmlFor="memeimage" action="/upload">Meme: : </label>
-                <input type="file" id="memeimage" name="memeimage" onChange={this.handleFileChange}/>
-            </div>
-         <div>
-             <input type="button" onClick={this.upload} value="Upload"/>
-         </div>
+
+
+                <div>
+                    <label htmlFor="memeimage" action="/upload">Meme: : </label>
+                    <input type="file" id="memeimage" name="memeimage" onChange={this.handleFileChange} />
+                </div>
                 <div>
                     <label htmlFor="memeimage" >Meme: </label>
                     <input type="file" id="memeimage" name="imageApi" onChange={this.handleChange} />
                 </div>
                 <div>
-                    <button type="button">Submit</button>
+                    <button type="submit" >Submit</button>
                 </div>
 
             </form>

@@ -13,6 +13,7 @@ class UserProvider extends Component {
     apiHandler
       .isLoggedIn()
       .then((data) => {
+        console.log(data, "this is data")
         this.setState({ user: data, isLoggedIn: true, isLoading: false });
       })
       .catch((error) => {
