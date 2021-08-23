@@ -1,25 +1,54 @@
-// import React from "react";
-// import axios from "axios";
-// import { Component } from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
+import { withUser } from "../components/Auth/withUser";
 
 
-// class Profile extends Component {
-
-//   state = {
-//     meme: l,
-//   };
-
-//   render () {
-
-//    return (
-//     <div className="ProtectedProfile">
-//     <h1>Welcome on your protected profile !</h1>
-//     <
-//   </div>
-//    )
-//   }
-    
+class Profile extends Component {
+  render() {
+      const {context}=this.props;
+      const {user}= context;
   
-//  };
+    return (
+      <div>
+        <h2>Welcome {user.userName}</h2>
 
-// export default Profile;
+        <section className="Profile">
+          <div>
+            <img src={user.profileImg} alt={user.userName} />
+          </div>
+          <div className="user-presentation">
+            <h2>{user.userName}</h2>
+            <Link className="link" to="/profile/settings">
+              Edit profile
+            </Link>
+          </div>
+
+
+          <div className="Memes">
+            <h3>Your memes</h3>
+            <div className="meme">
+              <div className="round-image">
+                <img
+                  src="https://i.imgur.com/VzEhqoJ.jpg"
+                  alt=""
+                />
+              </div>
+
+              <div className="buttons">
+                <span>
+                  <button className="btn-secondary">Delete</button>
+                </span>
+                <span>
+                  <button className="btn-primary">Edit</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+}
+
+export default withUser(Profile);
