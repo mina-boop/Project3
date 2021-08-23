@@ -9,6 +9,7 @@ class Profile extends Component {
     const { user } = context;
 console.log(user.profileImg)
     return (
+      
       <div>
         <h2>Welcome {user.userName}</h2>
 
@@ -32,10 +33,10 @@ console.log(user.profileImg)
 
               <div className="buttons">
                 <span>
-                  <button className="btn-secondary">Delete</button>
+                  <button className="btn-secondary" onClick={}>Delete</button>
                 </span>
                 <span>
-                  <button className="btn-primary">Edit</button>
+                  <button className="btn-primary" onClick={}>Edit</button>
                 </span>
               </div>
             </div>
