@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios"
 import "../styles/Home.css";
 
-class Home extends React.Component {
+class Home extends Component {
 
   state = {
     memes: [],
