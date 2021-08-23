@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 
 import { withUser } from "../components/Auth/withUser";
 
-
 class Profile extends Component {
   render() {
     const { context } = this.props;
     const { user } = context;
-
     return (
+
       <div>
         <h2>Welcome {user.userName}</h2>
 
@@ -24,23 +23,19 @@ class Profile extends Component {
             </Link>
           </div>
 
-
           <div className="Memes">
             <h3>Your memes</h3>
             <div className="meme">
               <div className="round-image">
-                <img
-                  src="https://i.imgur.com/VzEhqoJ.jpg"
-                  alt=""
-                />
+                <img src="https://i.imgur.com/VzEhqoJ.jpg" alt="" />
               </div>
 
               <div className="buttons">
                 <span>
-                  <button className="btn-secondary">Delete</button>
+                  <button className="button">Delete</button>
                 </span>
                 <span>
-                  <button className="btn-primary">Edit</button>
+                  <button className="button" >Edit</button>
                 </span>
               </div>
             </div>
