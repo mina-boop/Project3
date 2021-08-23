@@ -27,19 +27,19 @@ class Home extends Component {
 
     return (
       <div>
-        <h1>All your memes here !</h1>
+        <h1>Feed :</h1>
 
         <div className="container" >
 
           {this.state.memes.map((meme) => {
 
-            return (
-              <div key={meme.id} className="grid">
-                <article>
-                  <p>Posted by Toto at 6pm</p>
-                  <img src={meme.url} alt="" className="img" />
-                  <button>like</button>
-                </article>
+            return(
+              <div key={meme.id}  className="grid">
+              <article>
+              <p>Posted by Toto at 6pm</p>
+                <img src={meme.url} alt="" className="img"/>
+              <button>like</button>
+              </article>
               </div>
             )
           })}
