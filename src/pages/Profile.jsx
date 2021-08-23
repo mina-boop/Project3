@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 
 class Profile extends Component {
+  handleDelete = (event) => {
+    console.log("Delete");
+  };
+  handleUpdate = (event) => {
+    console.log("Update")
+  }
   render() {
     const { context } = this.props;
     const { user } = context;
@@ -32,10 +38,14 @@ class Profile extends Component {
 
               <div className="buttons">
                 <span>
-                  <button className="button">Delete</button>
+                  <button className="btn-secondary" onClick={this.handleDelete}>
+                    Delete
+                  </button>
                 </span>
                 <span>
-                  <button className="button" >Edit</button>
+                  <button className="btn-primary" onClick={this.handleUpdate}>
+                    Edit
+                  </button>
                 </span>
               </div>
             </div>
