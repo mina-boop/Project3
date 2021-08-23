@@ -10,6 +10,9 @@ class FormSignup extends Component {
   state = {
     email: "",
     password: "",
+    userName:"",
+    zodiacSign:"",
+    city:""
   };
 
   handleChange = (event) => {
@@ -62,6 +65,22 @@ class FormSignup extends Component {
 
         </div>
         </div>
+
+        <div className="field">
+       
+       <label htmlFor="email" class="label"> Email: </label>
+       <div className="control has-icons-left">
+       <input
+         onChange={this.handleChange}
+         value={this.state.email}
+         type="text"
+         id="email"
+         name="email"
+       />
+       <span className="icon is-small is-left"><i className="fas fa-user"></i></span>
+
+       </div>
+       </div>
 
         <div className="field">
         <p className="control has-icons-left">
