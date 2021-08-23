@@ -7,7 +7,7 @@ class Profile extends Component {
   render() {
     const { context } = this.props;
     const { user } = context;
-console.log(user.profileImg)
+console.log(user)
     return (
       <div>
         <h2>Welcome {user.userName}</h2>
