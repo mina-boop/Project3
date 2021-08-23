@@ -11,6 +11,7 @@ class FormSignup extends Component {
     email: "",
     password: "",
     userName:"",
+    profileImg:"",
     zodiacSign:"",
     city:""
   };
