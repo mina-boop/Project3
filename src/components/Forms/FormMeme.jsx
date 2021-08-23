@@ -2,23 +2,39 @@
 import React, { Component } from 'react'
 import apiHandler from '../../api/apiHandler';
 // import { UserContext } from "../Auth/UserContext";
-import UserProvider from '../Auth/UserProvider';
+// import UserProvider from '../Auth/UserProvider';
+import Imagedb from "../../data/Memedb.json"
+import SearchBar from './SearchBar';
+
+
+<SearchBar/>
+
 
 
 class FormMeme extends Component {
     state = {
-        creator: null,
         caption1: "",
         caption2: "",
-        imageApi: "",
+        image: "",
+        name:"",
+        search:""
     }
 
+     
+
     handleChange = (event) => {
-        const key = event.target.name;
+       
+        const key = event.target.name;       
         const value = event.target.value;
-        console.log(this.state, UserProvider)
         this.setState({ [key]: value });
     };
+
+    handleSearchValue = (event) =>{
+        console.log("target value !!!!!!",event.target )
+
+        // this.setState = event.target.value;
+
+    }
 
 
 
@@ -70,10 +86,12 @@ class FormMeme extends Component {
          <div>
              <input type="button" onClick={this.upload} value="Upload"/>
          </div>
-                <div>
-                    <label htmlFor="memeimage" >Meme: </label>
-                    <input type="file" id="memeimage" name="imageApi" onChange={this.handleChange} />
-                </div>
+         <div>
+          <SearchBar
+            handleChange={this.handleSearchValue}
+            value={this.state.search}
+          />
+        </div>
                 <div>
                     <button type="button">Submit</button>
                 </div>
