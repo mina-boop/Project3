@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios"
+import "../styles/Home.css";
 
 class Home extends React.Component {
 
@@ -26,26 +27,23 @@ class Home extends React.Component {
 
     return (
       <div>
-        <h1>Home Page ∆</h1>
+        <h1>Feed :</h1>
 
-        <ul>
+        <div className="container" >
 
           {this.state.memes.map((meme)=>{
 
             return(
-              <div key={meme.id}>
-              <li>
-                <img src={meme.url} alt=""/>
-              <div>
-                <label for="text">Comment:</label>
-                <textarea id="msg" name="user_message"></textarea>
-              </div>  
+              <div key={meme.id}  className="grid">
+              <article>
+              <p>Posted by Toto at 6pm</p>
+                <img src={meme.url} alt="" className="img"/>
               <button>like</button>
-              </li>
+              </article>
               </div>
             )
           })}
-        </ul>
+        </div>
       </div>
     );
   }

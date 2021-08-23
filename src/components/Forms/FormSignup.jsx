@@ -5,6 +5,7 @@ import apiHandler from "../../api/apiHandler";
 
 import 'bulma/css/bulma.css';
 
+
 class FormSignup extends Component {
   state = {
     email: "",
@@ -55,6 +56,7 @@ class FormSignup extends Component {
           type="text"
           id="userName"
           name="userName"
+          className="input"
         />
         <span className="icon is-small is-left"><i className="fas fa-user"></i></span>
 
@@ -71,6 +73,7 @@ class FormSignup extends Component {
           type="password"
           id="password"
           name="password"
+          className="input"
         />
          <span className="icon is-small is-left"> <i className="fas fa-lock"></i> </span>
          </p>
@@ -86,6 +89,7 @@ class FormSignup extends Component {
           type="text"
           id="zodiacSign"
           name="zodiacSign"
+          className="input"
         />
         </div>
         </div>
@@ -99,6 +103,7 @@ class FormSignup extends Component {
           type="text"
           id="city"
           name="city"
+          className="input"
         />
         </div>
         </div>
@@ -112,6 +117,7 @@ class FormSignup extends Component {
           type="file"
           id="profileImg"
           name="profileImg"
+          className="input"
         />
         </div>
         </div>
