@@ -5,25 +5,25 @@ import "../styles/Home.css";
 class Home extends React.Component {
 
   state = {
-    memes : [],
+    memes: [],
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
     axios.get("https://api.imgflip.com/get_memes")
-    .then((apiResponse)=>{
-      console.log("im here!", apiResponse.data.data.memes)
-      this.setState({
-       
-        memes : apiResponse.data.data.memes,
+      .then((apiResponse) => {
+        console.log("im here!", apiResponse.data.data.memes)
+        this.setState({
+
+          memes: apiResponse.data.data.memes,
+        })
       })
-    })
-    .catch((e)=>console.log(e))
+      .catch((e) => console.log(e))
   }
 
 
   render() {
-    console.log("haaaaallo!",this.state.memes)
+    console.log("haaaaallo!", this.state.memes)
 
     return (
       <div>
@@ -31,7 +31,7 @@ class Home extends React.Component {
 
         <div className="container" >
 
-          {this.state.memes.map((meme)=>{
+          {this.state.memes.map((meme) => {
 
             return(
               <div key={meme.id}  className="grid">
