@@ -19,7 +19,7 @@ ul {
   list-style-type: none;
 }
 
-.memes{
+.memes {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -28,7 +28,13 @@ ul {
   float: right;
 }
 
-
 h1 {
   color: blue;
+}
+#caption1,
+#caption2 {
+  position: relative;
+}
+#memeSelected {
+  position: absolute;
 }
