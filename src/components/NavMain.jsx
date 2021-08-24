@@ -22,11 +22,11 @@ const NavMain = (props) => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <NavLink exact to="/" className="navbar-item">
-          <img className="image" src="../memeLogo.png" alt="" width="200" height="100" />
+        <NavLink exact to="/" >
+          <img id="main-logo"className="image" src="../memeLogo.png" alt="" />
         </NavLink>
 
-        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a role="button"  className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
