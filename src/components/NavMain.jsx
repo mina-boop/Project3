@@ -26,11 +26,11 @@ const NavMain = (props) => {
           <img id="main-logo" className="image" src="../memeLogo.png" alt="" />
         </NavLink>
 
-        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <NavLink role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" to="navbarBasicExample">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </NavLink>
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
