@@ -20,35 +20,53 @@ const NavMain = (props) => {
   }
 
   return (
-    <nav className="NavMain">
-      <NavLink exact to="/">
-        <h3 className="logo">App name</h3>
-      </NavLink>
-      <ul className="nav-list">
-        {context.isLoggedIn && (
-          <React.Fragment>
-            <li>
-              <NavLink to="/profile">
-                {context.user && context.user.email}
-              </NavLink>
-            </li>
-            <li>
-              <p onClick={handleLogout}>Logout</p>
-            </li>
-          </React.Fragment>
-        )}
-        {!context.isLoggedIn && (
-          <React.Fragment>
-            <li>
-              <NavLink to="/signin">Log in</NavLink>
-            </li>
-            <li>
-              <NavLink to="/signup">Create account</NavLink>
-            </li>
-          </React.Fragment>
-        )}
-      </ul>
-    </nav>
+    <nav className="navbar" role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <NavLink exact to="/" >
+          <img id="main-logo" className="image" src="../memeLogo.png" alt="" />
+        </NavLink>
+
+        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" className="navbar-menu">
+        <div className="navbar-start">
+          <NavLink exact to="/" className="navbar-item">
+            Home
+          </NavLink>
+        </div>
+
+        <div className="navbar-end">
+          {context.isLoggedIn && (
+            <React.Fragment>
+              <div className="navbar-item">
+                <div className="buttons">
+                  <NavLink exact to="/profile"><div className="button is-light">My profile</div></NavLink>
+                  {context.user && <NavLink exact to="/memeform"><div className="button is-primary" >Create meme</div></NavLink>}
+                  <button className="button is-info" onClick={handleLogout}>Logout</button></div></div>
+            </React.Fragment>
+          )}
+          {!context.isLoggedIn && (
+            <React.Fragment>
+              <div className="navbar-item">
+                <div className="buttons">
+                  <a className="button is-light"> <NavLink to="/signin">Log in</NavLink></a>
+
+                  <button className="button is-primary">
+                    <NavLink to="/signup">Create account</NavLink>
+                  </button>
+                </div>
+              </div>
+            </React.Fragment>
+          )}
+        </div>
+      </div>
+    </nav >
+
   );
 };
 
