@@ -7,11 +7,11 @@ import "../styles/Home.css";
 
 
 class Profile extends Component {
-state ={
-  meme : [], 
-}
+  state = {
+    meme: [],
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     apiHandler
     .getUserMemes()
     .then((dbRes)=>{
@@ -19,28 +19,25 @@ state ={
       this.setState({
        meme  : dbRes
       })
-    })
-    .catch((e)=>console.log(e))
-  }
-
-
+      .catch((e) => console.log(e));
+  })}
 
   handleDelete = (event) => {
     console.log("Delete");
   };
   handleUpdate = (event) => {
-    console.log("Update")
-  }
+    console.log("Update");
+  };
   render() {
+    
     const { context } = this.props;
     const { user } = context;
-console.log(user.profileImg)
+    console.log(user.profileImg);
     return (
-      
-      <div>
+      <div className="profile-container">
         <h2>Welcome {user.userName}</h2>
 
-        <section className="Profile">
+        <section className="profile">
           <div>
           <figure className="image is-128x128">
             <img src={user.profileImg} alt={user.userName} />
@@ -54,7 +51,7 @@ console.log(user.profileImg)
             </Link>
           </div>
 
-          <div className="Memes">
+          <div className="memes">
             <h3>Your memes</h3>
             <div className="meme">
             <div className="container">
@@ -78,7 +75,7 @@ console.log(user.profileImg)
                   <button className="btn-secondary">Delete</button>
                 </span>
                 <span>
-                  <button className="btn-primary" >Edit</button>
+                  <button className="btn-primary">Edit</button>
                 </span>
               </div>
             </div>
