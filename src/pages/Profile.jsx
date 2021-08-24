@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
-import apiHandler from "../api/apiHandler"
+import apiHandler from "../api/apiHandler";
+import 'bulma/css/bulma.css';
+import "../styles/Home.css";
+
 
 class Profile extends Component {
 state ={
@@ -39,7 +42,10 @@ console.log(user.profileImg)
 
         <section className="Profile">
           <div>
+          <figure className="image is-128x128">
             <img src={user.profileImg} alt={user.userName} />
+          </figure>
+
           </div>
           <div className="user-presentation">
             <h2>{user.userName}</h2>
@@ -51,9 +57,21 @@ console.log(user.profileImg)
           <div className="Memes">
             <h3>Your memes</h3>
             <div className="meme">
-              <div className="round-image">
-                <img src="https://i.imgur.com/VzEhqoJ.jpg" alt="" />
-              </div>
+            <div className="container">
+            {this.state.meme.map((meme)=>{
+              
+              return(
+                 <div className="grid">
+                  <article className="box">
+                   <p>Posted </p>
+                   <img src={meme.memeimage} alt="" />
+                  </article>
+                  </div>
+              )
+            })}
+            </div>
+
+
 
               <div className="buttons">
                 <span>
