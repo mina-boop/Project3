@@ -4,8 +4,6 @@ import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler"
 
 class Profile extends Component {
-<<<<<<< HEAD
-=======
 state ={
   meme : [], 
 }
@@ -31,7 +29,6 @@ state ={
   handleUpdate = (event) => {
     console.log("Update")
   }
->>>>>>> 9e77b6662cb51e11cbec6f28bf04500d3a63be44
   render() {
     const { context } = this.props;
     const { user } = context;
