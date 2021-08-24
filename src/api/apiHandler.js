@@ -61,9 +61,14 @@ const apiHandler = {
       .get("/api/users/me/memes", meme)
       .then((res) => res.data)
       .catch(errorHandler);
-  }
+  },
 
- 
+  getAllUsersMemes() {
+    return service
+      .get("/api/memes/all")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 };
 
 export default apiHandler;

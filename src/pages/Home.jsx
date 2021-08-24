@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import axios from "axios"
+import React, { Component, createFactory } from "react";
 import "../styles/Home.css";
-import Landing from "./Landing";
+import apiHandler from "../api/apiHandler";
+import 'bulma/css/bulma.css';
+
 
 class Home extends Component {
 
@@ -9,22 +10,24 @@ class Home extends Component {
     memes: [],
   }
 
-  componentDidMount() {
 
-    axios.get("https://api.imgflip.com/get_memes")
-      .then((apiResponse) => {
-      
-        this.setState({
-
-          memes: apiResponse.data.data.memes,
-        })
+  componentDidMount(){
+    console.log("here")
+    apiHandler
+    .getAllUsersMemes()
+    .then((dbRes)=>{
+      console.log("dbRes here !!!!", dbRes)  
+      this.setState({
+       memes  : dbRes
       })
-      .catch((e) => console.log(e))
+    })
+    .catch((e)=>console.log(e))
   }
 
 
-  render() {
+  render() { 
   
+
 
     return (
       <div>
@@ -38,8 +41,8 @@ class Home extends Component {
             return(
               <div key={meme.id}  className="grid">
               <article className="box">
-              <p>Posted by Toto at 6pm</p>
-                <img src={meme.url} alt="" className="img"/>
+              <p> posted by {meme.creator.userName} at {meme.createdAt}</p>
+                <img src={meme.memeimage} alt="" className="img"/>
               <span><img className="icon" src="../comment-icon.png" alt="icon-comment"/></span>
               <span><img className="icon" src="../like-icon.png" alt="like-comment"/></span>
               </article>
