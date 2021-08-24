@@ -32,10 +32,10 @@ console.log(user.profileImg)
 
               <div className="buttons">
                 <span>
-                  <button className="btn-secondary" onClick={()=>}>Delete</button>
+                  <button className="btn-secondary">Delete</button>
                 </span>
                 <span>
-                  <button className="btn-primary" onClick={}>Edit</button>
+                  <button className="btn-primary" >Edit</button>
                 </span>
               </div>
             </div>
