@@ -1,8 +1,5 @@
-// import axios from "axios";
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
-// import { UserContext } from "../Auth/UserContext";
-// import UserProvider from '../Auth/UserProvider';
 import Imagedb from "../../data/Memedb.json";
 import SearchBar from "./SearchBar";
 
@@ -13,17 +10,15 @@ class FormMeme extends Component {
         caption1: "",
         caption2: "",
         memeimage: "",
-        name: "",
         search: "",
     };
 
     handleChange = (event) => {
-        if (this.state.search !== "") {
-            event.target = this.state.search
-        }
-        const key = event.target.name;
-        const value = event.target.value;
-        this.setState({ [key]: value });
+        const { value, name } = event.target
+        /*         if (this.state.search !== "") {
+                    event.target = this.state.search
+                } */
+        this.setState({ [name]: value });
     };
 
     handleClickImage = (event) => {
@@ -37,24 +32,21 @@ class FormMeme extends Component {
             search: event,
         });
     };
-
-    handleFileUpload = (event) => {
-        this.setState({ memeimage: event.target.files[0] });
-    }
+    /* 
+        handleFileUpload = (event) => {
+            this.setState({ memeimage: event.target.files[0] });
+        } */
 
     handleCreate = (event) => {
         event.preventDefault();
-        const meme = {
-            caption1: this.state.caption1,
-            caption2: this.state.caption2,
-            imageApi: this.state.imageApi,
-        };
+        const fd = new FormData();
+        fd.append("memeimage", this.state.memeimage);
+        fd.append("caption1", this.state.caption1);
+        fd.append("caption2", this.state.caption2);
 
         apiHandler
-            .postMemes(meme)
-            .then((data) => {
-                console.log("here", data);
-                this.setState(...data);
+            .postMemes(fd)
+            .then(() => {
             })
             .catch((error) => {
                 console.log(error);
@@ -81,15 +73,14 @@ class FormMeme extends Component {
                         />
                     </div>
 
-                    <div className="box">
-                        {filteredImage.map((image) => {
-                            return (
-                                <div className="box" key={image.name} onClick={this.handleClickImage}>
-                                    <img className="image" src={image.image} alt="" />
-                                </div>
-                            );
-                        })}
-                    </div>
+                    {filteredImage.map((image) => {
+                        return (
+                            <div className="box row" key={image.name} onClick={this.handleClickImage}>
+                                <img className="image" src={image.image} alt="" />
+                            </div>
+                        );
+                    })}
+
 
                     <div>
                         <label className="label" htmlFor="caption1">Caption 1 : </label>
@@ -124,7 +115,7 @@ class FormMeme extends Component {
                             onChange={this.handleFileUpload}
                         />
                     </div>
-                    {this.state.memeimage && <div><input type="text" name="caption1" className="input" placeholder={this.state.caption1} /><img className="image" src={this.state.memeimage} alt="" /></div>}
+                    {this.state.memeimage && <div><input type="text" id="caption1" className="input" placeholder={this.state.caption1} /><div><img className="image" src={this.state.memeimage} alt="" /></div><input type="text" id="caption2" className="input" placeholder={this.state.caption2} /></div>}
 
                     <div>
                         <button className="button " type="submit">Submit</button>

@@ -1,8 +1,37 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
+import apiHandler from "../api/apiHandler"
 
 class Profile extends Component {
+<<<<<<< HEAD
+=======
+state ={
+  meme : [], 
+}
+
+  componentDidMount(){
+    apiHandler
+    .getUserMemes()
+    .then((dbRes)=>{
+      console.log("dbRes here !!!!", dbRes)  
+      this.setState({
+       meme  : dbRes
+
+      })
+    })
+    .catch((e)=>console.log(e))
+  }
+
+
+
+  handleDelete = (event) => {
+    console.log("Delete");
+  };
+  handleUpdate = (event) => {
+    console.log("Update")
+  }
+>>>>>>> 9e77b6662cb51e11cbec6f28bf04500d3a63be44
   render() {
     const { context } = this.props;
     const { user } = context;
