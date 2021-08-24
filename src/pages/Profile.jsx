@@ -31,8 +31,9 @@ state ={
   render() {
     const { context } = this.props;
     const { user } = context;
+console.log(user.profileImg)
     return (
-
+      
       <div>
         <h2>Welcome {user.userName}</h2>
 
@@ -56,14 +57,10 @@ state ={
 
               <div className="buttons">
                 <span>
-                  <button className="btn-secondary" onClick={this.handleDelete}>
-                    Delete
-                  </button>
+                  <button className="btn-secondary">Delete</button>
                 </span>
                 <span>
-                  <button className="btn-primary" onClick={this.handleUpdate}>
-                    Edit
-                  </button>
+                  <button className="btn-primary" >Edit</button>
                 </span>
               </div>
             </div>

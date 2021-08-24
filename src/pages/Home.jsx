@@ -28,7 +28,8 @@ class Home extends Component {
 
     return (
       <div>
-        <h1>Feed :</h1>
+        <div className="titlecolor">
+          <h1>Feed :</h1></div>
 
         <div className="container" >
 
@@ -36,13 +37,11 @@ class Home extends Component {
 
             return(
               <div key={meme.id}  className="grid">
-              <article>
+              <article className="box">
               <p>Posted by Toto at 6pm</p>
                 <img src={meme.url} alt="" className="img"/>
-                <div className="icon-btn">
-                <button className="icon" id="like"> <a href="/"> <img src="./like.png" alt="like button" className="img-like-btn"/></a> </button>
-              <button className="icon" id="comment"> <a href="/comment"> <img src="./comment.png" alt="comment button"/></a> </button>
-                </div>
+              <span><img className="icon" src="../comment-icon.png" alt="icon-comment"/></span>
+              <span><img className="icon" src="../like-icon.png" alt="like-comment"/></span>
               </article>
               </div>
             )
