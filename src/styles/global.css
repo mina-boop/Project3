@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
 }
 
 html {
@@ -29,7 +28,6 @@ ul {
   float: right;
 }
 
-
 #caption1,
 #caption2 {
   position: relative;
@@ -38,6 +36,6 @@ ul {
   position: absolute;
 }
 
-body{
-  background-color: black;
+body {
+  background-color: gainsboro;
 }

@@ -23,10 +23,10 @@ const NavMain = (props) => {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <NavLink exact to="/" >
-          <img id="main-logo"className="image" src="../memeLogo.png" alt="" />
+          <img id="main-logo" className="image" src="../memeLogo.png" alt="" />
         </NavLink>
 
-        <a role="button"  className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -43,13 +43,11 @@ const NavMain = (props) => {
         <div className="navbar-end">
           {context.isLoggedIn && (
             <React.Fragment>
-
-              <NavLink to="/profile">
-                {context.user && context.user.email}
-              </NavLink>
-
-              <button className="button" onClick={handleLogout}>Logout</button>
-
+              <div className="navbar-item">
+                <div className="buttons">
+                  <NavLink exact to="/profile"><div className="button is-light">My profile</div></NavLink>
+                  {context.user && <NavLink exact to="/memeform"><div className="button is-primary" >Create meme</div></NavLink>}
+                  <button className="button is-info" onClick={handleLogout}>Logout</button></div></div>
             </React.Fragment>
           )}
           {!context.isLoggedIn && (
