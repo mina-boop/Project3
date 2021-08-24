@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from 'react'
-
-class Profile extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
-}
-
-export default Profile
-=======
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
@@ -67,4 +52,3 @@ class Profile extends Component {
 }
 
 export default withUser(Profile);
->>>>>>> 606c4e5d880381b2f03cd29b5fc3322d9ae1abd3
