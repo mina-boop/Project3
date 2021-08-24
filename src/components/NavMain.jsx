@@ -54,7 +54,7 @@ const NavMain = (props) => {
             <React.Fragment>
               <div className="navbar-item">
                 <div className="buttons">
-                  <a className="button is-light"> <NavLink to="/signin">Log in</NavLink></a>
+                  <div className="button is-light"> <NavLink to="/signin">Log in</NavLink></div>
 
                   <button className="button is-primary">
                     <NavLink to="/signup">Create account</NavLink>

@@ -1,7 +1,6 @@
-import React, { Component, createFactory } from "react";
+import React, { Component } from "react";
 import "../styles/Home.css";
 import apiHandler from "../api/apiHandler";
-import FormSignin from "../components/Forms/FormSignin"
 import 'bulma/css/bulma.css';
 
 
@@ -9,7 +8,7 @@ class Home extends Component {
 
   state = {
     memes: [],
-    showModal: true
+    showModal: "",
   }
 
 
@@ -27,19 +26,18 @@ class Home extends Component {
   }
 
   render() {
-
+    console.log(this.props)
 
 
     return (
       <div>
         <div className="titlecolor">
           <h1>Feed :</h1></div>
-        {this.state.showModal && <div class="modal ">
+        {this.props.isLoggedIn && <div class="modal is-active">
           <div class="modal-background"></div>
           <div class="modal-content">
-            <FormSignin />
           </div>
-          <button class="modal-close is-large" aria-label="close"></button>
+          <button class="modal-close is-large" aria-label="close" onClick={() => { this.setState({ showModal: !this.state.showModal }) }}></button>
         </div>}
         <div className="container" >
 
