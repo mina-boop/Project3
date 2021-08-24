@@ -12,11 +12,13 @@ import Settings from "./pages/Settings";
 
 
 
+
 function App() {
   return (
     <div className="App">
       <NavMain />
       <Switch>
+        
         <Route exact path="/" component={Home} />
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/memeform" component={FormMeme}/>

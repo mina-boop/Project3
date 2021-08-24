@@ -8,6 +8,7 @@ class Home extends Component {
     memes: [],
   }
 
+
   componentDidMount() {
 
     axios.get("https://api.imgflip.com/get_memes")
@@ -38,7 +39,10 @@ class Home extends Component {
               <article>
               <p>Posted by Toto at 6pm</p>
                 <img src={meme.url} alt="" className="img"/>
-              <button>like</button>
+                <div className="icon-btn">
+                <button className="icon" id="like"> <a href="/"> <img src="./like.png" alt="like button" className="img-like-btn"/></a> </button>
+              <button className="icon" id="comment"> <a href="/comment"> <img src="./comment.png" alt="comment button"/></a> </button>
+                </div>
               </article>
               </div>
             )
