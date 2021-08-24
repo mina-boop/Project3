@@ -1,8 +1,5 @@
-// import axios from "axios";
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
-// import { UserContext } from "../Auth/UserContext";
-// import UserProvider from '../Auth/UserProvider';
 import Imagedb from "../../data/Memedb.json";
 import SearchBar from "./SearchBar";
 

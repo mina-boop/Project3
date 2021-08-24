@@ -3,8 +3,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import { withUser } from "../Auth/withUser";
 import apiHandler from "../../api/apiHandler";
 
-import 'bulma/css/bulma.css';
-
+import "bulma/css/bulma.css";
 
 class FormSignup extends Component {
   state = {
@@ -55,7 +54,6 @@ class FormSignup extends Component {
     }
 
     return (
-
       <div className="card">
         <div className="card-content">
 

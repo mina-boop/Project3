@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import FormMeme from "./components/Forms/FormMeme"
 import 'bulma/css/bulma.css';
+import Settings from "./pages/Settings";
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/memeform" component={FormMeme}/>
         <Route exact path="/signup" component={Signup} />
         <ProtectedRoute exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path="/profile/settings" component={Settings} />
       </Switch>
     </div>
   );
