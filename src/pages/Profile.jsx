@@ -15,7 +15,6 @@ state ={
       console.log("dbRes here !!!!", dbRes)  
       this.setState({
        meme  : dbRes
-
       })
     })
     .catch((e)=>console.log(e))
