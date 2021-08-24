@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios"
 import "../styles/Home.css";
+import Landing from "./Landing";
 
 class Home extends Component {
 
