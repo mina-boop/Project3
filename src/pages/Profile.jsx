@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import { withUser } from "../components/Auth/withUser";
 
 class Profile extends Component {
