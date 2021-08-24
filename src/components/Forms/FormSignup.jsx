@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { withUser } from "../Auth/withUser";
 import apiHandler from "../../api/apiHandler";
-
 import "bulma/css/bulma.css";
 
 class FormSignup extends Component {

@@ -1,46 +1,50 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
-import apiHandler from "../api/apiHandler"
+import apiHandler from "../api/apiHandler";
+import "bulma/css/bulma.css";
 
 class Profile extends Component {
-state ={
-  meme : [], 
-}
+  state = {
+    meme: [],
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     apiHandler
-    .getUserMemes()
-    .then((dbRes)=>{
-      console.log("dbRes here !!!!", dbRes)  
-      this.setState({
-       meme  : dbRes
-
+      .getUserMemes()
+      .then((dbRes) => {
+        console.log("dbRes here !!!!", dbRes);
+        this.setState({
+          meme: dbRes,
+        });
       })
-    })
-    .catch((e)=>console.log(e))
+      .catch((e) => console.log(e));
   }
-
-
 
   handleDelete = (event) => {
     console.log("Delete");
   };
   handleUpdate = (event) => {
-    console.log("Update")
-  }
+    console.log("Update");
+  };
   render() {
+    
     const { context } = this.props;
     const { user } = context;
-console.log(user.profileImg)
+    console.log(user.profileImg);
     return (
-      
-      <div>
+      <div className="profile-container">
         <h2>Welcome {user.userName}</h2>
 
-        <section className="Profile">
+        <section className="profile">
           <div>
-            <img src={user.profileImg} alt={user.userName} />
+            <figure className="image is-128x128">
+              <img
+                
+                src={user.profileImg}
+                alt={user.userName}
+              />
+            </figure>
           </div>
           <div className="user-presentation">
             <h2>{user.userName}</h2>
@@ -49,19 +53,16 @@ console.log(user.profileImg)
             </Link>
           </div>
 
-          <div className="Memes">
+          <div className="memes">
             <h3>Your memes</h3>
             <div className="meme">
-              <div className="round-image">
-                <img src="https://i.imgur.com/VzEhqoJ.jpg" alt="" />
-              </div>
-
+            <span> </span>
               <div className="buttons">
                 <span>
                   <button className="btn-secondary">Delete</button>
                 </span>
                 <span>
-                  <button className="btn-primary" >Edit</button>
+                  <button className="btn-primary">Edit</button>
                 </span>
               </div>
             </div>
