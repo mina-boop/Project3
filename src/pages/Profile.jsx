@@ -20,11 +20,11 @@ class Profile extends Component {
        meme  : dbRes
       })
       .catch((e) => console.log(e));
-  }
+  })}
 
   handleDelete = (event) => {
     console.log("Delete");
-  }; 
+  };
   handleUpdate = (event) => {
     console.log("Update");
   };
