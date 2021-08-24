@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { withUser } from "../Auth/withUser";
-import apiHandler from "../../api/apiHandler";
-
 import "bulma/css/bulma.css";
 
-class FormSignup extends Component {
+class FormSettings extends Component {
   state = {
     email: "",
     password: "",
     userName: "",
     zodiacSign: "",
     city: "",
+    profileImg: "",
   };
 
   handleChange = (event) => {
@@ -24,33 +23,30 @@ class FormSignup extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    apiHandler
-      .signup(this.state)
-      .then(() => {
-        this.props.history.push("/signin");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const User = {
+      email: this.state.email,
+      password: this.state.password,
+      userName: this.state.userName,
+      zodiacSign: this.state.zodiacSign,
+      city: this.state.city,
+      profileImg: this.state.profileImg,
+    };
   };
 
   render() {
-    if (this.props.context.user) {
-      return <Redirect to="/" />;
-    }
-
     return (
       <div className="card">
         <div className="card-content">
           <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
-            <h2>Signup</h2>
+            <h2>Edit your infos</h2>
 
             <div className="field">
-              <label htmlFor="userName" class="label">
+              <label htmlFor="userName" className="label">
                 User Name:{" "}
               </label>
               <div className="control has-icons-left">
                 <input
+                  placeholder={this.state.userName}
                   onChange={this.handleChange}
                   value={this.state.userName}
                   type="text"
@@ -65,12 +61,13 @@ class FormSignup extends Component {
             </div>
 
             <div className="field">
-              <label htmlFor="email" class="label">
+              <label htmlFor="email" className="label">
                 {" "}
                 Email:{" "}
               </label>
               <div className="control has-icons-left">
                 <input
+                  placeholder={this.state.email}
                   onChange={this.handleChange}
                   value={this.state.email}
                   type="text"
@@ -110,6 +107,7 @@ class FormSignup extends Component {
               </label>
               <div className="control">
                 <input
+                  placeholder={this.state.zodiacSign}
                   onChange={this.handleChange}
                   value={this.state.zodiacSign}
                   type="text"
@@ -126,6 +124,7 @@ class FormSignup extends Component {
               </label>
               <div className="control">
                 <input
+                  placeholder={this.state.city}
                   onChange={this.handleChange}
                   value={this.state.city}
                   type="text"
@@ -159,4 +158,4 @@ class FormSignup extends Component {
   }
 }
 
-export default withRouter(withUser(FormSignup));
+export default withRouter(withUser(FormSettings));
