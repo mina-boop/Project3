@@ -1,8 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
+import apiHandler from "../api/apiHandler"
 
 class Profile extends Component {
+state ={
+  meme : [], 
+}
+
+  componentDidMount(){
+    apiHandler
+    .getUserMemes()
+    .then((dbRes)=>{
+      console.log("dbRes here !!!!", dbRes)  
+      this.setState({
+       meme  : dbRes
+
+      })
+    })
+    .catch((e)=>console.log(e))
+  }
+
+
+
   handleDelete = (event) => {
     console.log("Delete");
   };
