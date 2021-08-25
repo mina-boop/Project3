@@ -21,11 +21,12 @@ class Profile extends Component {
         });
       })
       .catch((e) => console.log(e));
-      apiHandler.getUserInfos()
-      .then((res)=>{
-        this.setState({profile:res})
+    apiHandler
+      .getUserInfos()
+      .then((res) => {
+        this.setState({ profile: res });
       })
-      .catch((e)=>console.log(e))
+      .catch((e) => console.log(e));
   }
 
   handleDelete = (event) => {
@@ -35,8 +36,6 @@ class Profile extends Component {
     console.log("Update");
   };
   render() {
-   
-   
     return (
       <div className="profile-container">
         <h2>Welcome {this.state.profile.userName}</h2>
@@ -44,7 +43,10 @@ class Profile extends Component {
         <section className="profile">
           <div>
             <figure className="image is-128x128">
-              <img src={this.state.profile.profileImg} alt={this.state.profile.userName} />
+              <img
+                src={this.state.profile.profileImg}
+                alt={this.state.profile.userName}
+              />
             </figure>
           </div>
           <div className="user-presentation">
