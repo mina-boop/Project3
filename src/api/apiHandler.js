@@ -75,9 +75,9 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
-  getComment(memeId) {
+  getComments(memeId) {
     return service
-      .post(`/api/memes/${memeId}/allComments`)
+      .get(`/api/memes/${memeId}/allComments`)
       .then((res) => res.data)
       .catch(errorHandler);
   },

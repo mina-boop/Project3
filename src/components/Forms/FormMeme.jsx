@@ -54,7 +54,6 @@ class FormMeme extends Component {
     };
 
     render() {
-        console.log(this.state)
         const filteredImage = Imagedb.filter((image) => {
             if (this.state.search === "") return false;
             return image.name.toLowerCase().includes(this.state.search.toLocaleLowerCase())
@@ -62,7 +61,7 @@ class FormMeme extends Component {
 
         return (
             <div className="container-form">
-                <form className="field" forHTML="meme" onSubmit={this.handleCreate}>
+                <form className="field" onSubmit={this.handleCreate}>
                     <h1 className="title">Meme's form !</h1>
 
                     <div>

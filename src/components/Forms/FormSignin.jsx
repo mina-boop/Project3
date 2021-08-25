@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, Redirect, NavLink } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
-import Signup from "../../pages/Signup";
 import { withUser } from "../Auth/withUser";
 import 'bulma/css/bulma.css';
 

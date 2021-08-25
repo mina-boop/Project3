@@ -14,11 +14,10 @@ class FormComment extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-
         apiHandler
             .postComment(this.props.memeById, this.state)
-            .then((res) => {
-                console.log(res)
+            .then(() => {
+                this.props.updateComments()
             })
             .catch((error) => {
                 console.log(error);
@@ -26,22 +25,18 @@ class FormComment extends Component {
     };
 
     render() {
-        console.log(this.state)
         return (
-            <form className="field has-addons" onSubmit={this.handleSubmit}>
-                <p className="control">
-                    <span className="button is-small"> <input
+            <form className="has-addons" onSubmit={this.handleSubmit}>
+                <div className="control">
+                    <span>  <input
                         className="input is-small"
                         type="text"
-                        id="comment"
                         name="comment"
                         onChange={this.handleChange}
-                    /></span>
-
-                </p>
-                <p className="control">
-                    <span><button className="button is-small">Add</button></span>
-                </p>
+                        required
+                    />
+                        <button className="button is-small">Add</button></span>
+                </div>
             </form >
         );
     }
