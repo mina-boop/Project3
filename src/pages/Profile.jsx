@@ -8,6 +8,7 @@ import "../styles/Home.css";
 class Profile extends Component {
   state = {
     meme: [],
+    profile:{},
   };
 
   componentDidMount() {
@@ -20,6 +21,11 @@ class Profile extends Component {
         });
       })
       .catch((e) => console.log(e));
+      apiHandler.getUserInfos()
+      .then((res)=>{
+        this.setState({profile:res})
+      })
+      .catch((e)=>console.log(e))
   }
 
   handleDelete = (event) => {
@@ -29,21 +35,20 @@ class Profile extends Component {
     console.log("Update");
   };
   render() {
-    const { context } = this.props;
-    const { user } = context;
-    console.log(user.profileImg);
+   
+   
     return (
       <div className="profile-container">
-        <h2>Welcome {user.userName}</h2>
+        <h2>Welcome {this.state.profile.userName}</h2>
 
         <section className="profile">
           <div>
             <figure className="image is-128x128">
-              <img src={user.profileImg} alt={user.userName} />
+              <img src={this.state.profile.profileImg} alt={this.state.profile.userName} />
             </figure>
           </div>
           <div className="user-presentation">
-            <h2>{user.userName}</h2>
+            <h2>{this.state.profile.userName}</h2>
             <Link className="link" to="/profile/settings">
               Edit profile
             </Link>

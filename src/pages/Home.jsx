@@ -3,6 +3,7 @@ import "../styles/Home.css";
 import apiHandler from "../api/apiHandler";
 import 'bulma/css/bulma.css';
 import Signin from "./Signin";
+import Likebutton from "../components/Likebutton"
 
 
 class Home extends Component {
@@ -44,7 +45,7 @@ class Home extends Component {
                   <p> posted by {meme.creator.userName} at {meme.createdAt}</p>
                   <img src={meme.memeimage} alt="" className="img" />
                   <span><img className="icon" src="../comment-icon.png" alt="icon-comment" /></span>
-                  <span><img className="icon" src="../like-icon.png" alt="icon-like" /></span>
+                  <span><Likebutton/></span>
                 </article>
               </div>
             )

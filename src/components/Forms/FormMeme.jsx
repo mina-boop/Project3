@@ -68,7 +68,7 @@ class FormMeme extends Component {
 
                     <div>
                         <SearchBar
-                            handleChange={this.handleSearchValue}
+               handleChange={this.handleSearchValue}
                             value={this.state.search}
                             onChange={this.handleOnChange}
                         />
