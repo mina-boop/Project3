@@ -2,7 +2,7 @@ import React, { Component, createFactory } from "react";
 import "../styles/Home.css";
 import apiHandler from "../api/apiHandler";
 import 'bulma/css/bulma.css';
-
+import "../components/Likebutton";
 
 class Home extends Component {
 
