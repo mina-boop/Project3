@@ -76,6 +76,13 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+  
+  deleteMemes(id) {
+    return service
+      .delete("/api/memes/"+id)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 
   
 };

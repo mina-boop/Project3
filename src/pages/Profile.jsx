@@ -8,14 +8,13 @@ import "../styles/Home.css";
 class Profile extends Component {
   state = {
     meme: [],
-    profile:{},
+    profile: {},
   };
 
   componentDidMount() {
     apiHandler
       .getUserMemes()
       .then((dbRes) => {
-        console.log("dbRes here !!!!", dbRes);
         this.setState({
           meme: dbRes,
         });
@@ -30,11 +29,19 @@ class Profile extends Component {
   }
 
   handleDelete = (event) => {
-    console.log("Delete");
+    event.preventDefault();
+    const id = event.target.id;
+    apiHandler
+      .deleteMemes(id)
+      .then((memeId) => {
+        this.setState({
+          meme: memeId,
+        });
+        this.props.history.push("/profile", "/");
+      })
+      .catch((e) => console.log(e));
   };
-  handleUpdate = (event) => {
-    console.log("Update");
-  };
+
   render() {
     return (
       <div className="profile-container">
@@ -63,22 +70,24 @@ class Profile extends Component {
                 {this.state.meme.map((meme) => {
                   return (
                     <div className="grid">
-                      <article className="box">
+                      <article className="box" key={meme._id}>
                         <p>Posted </p>
                         <img src={meme.memeimage} alt="" />
+                        <div className="buttons">
+                          <span>
+                            <button
+                              id={meme._id}
+                              className="btn-secondary"
+                              onClick={this.handleDelete}
+                            >
+                              Delete
+                            </button>
+                          </span>
+                        </div>
                       </article>
                     </div>
                   );
                 })}
-              </div>
-
-              <div className="buttons">
-                <span>
-                  <button className="btn-secondary">Delete</button>
-                </span>
-                <span>
-                  <button className="btn-primary">Edit</button>
-                </span>
               </div>
             </div>
           </div>
