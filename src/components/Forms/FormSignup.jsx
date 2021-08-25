@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect, NavLink } from "react-router-dom";
 import { withUser } from "../Auth/withUser";
 import apiHandler from "../../api/apiHandler";
 import "bulma/css/bulma.css";
@@ -38,9 +38,8 @@ class FormSignup extends Component {
     fd.append("city", this.state.city);
 
     apiHandler.signup(fd)
-      .then((test) => {
-        console.log("apiHandler", test)
-        this.props.history.push("/signin");
+      .then(() => {
+        this.props.history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -53,106 +52,108 @@ class FormSignup extends Component {
     }
 
     return (
-      <div className="card">
-        <div className="card-content">
+      <div class="modal is-active">
+        <div class="modal-background"></div>
+        <div className="modal-card">
+          <header className="modal-card-head"><h2 className="title">Signup</h2></header>
+          <div className="modal-card-body">
+            <form onSubmit={this.handleSubmit} encType="multipart/form-data">
 
+              <div className="field">
 
-          <form onSubmit={this.handleSubmit} encType="multipart/form-data">
-            <h2>Signup</h2>
+                <label htmlFor="userName" className="label">User Name: </label>
+                <div className="control has-icons-left">
+                  <input
+                    onChange={this.handleChange}
+                    value={this.state.userName}
+                    type="text"
+                    id="userName"
+                    name="userName"
+                    className="input"
+                  />
+                  <span className="icon is-small is-left"><i className="fas fa-user"></i></span>
 
-            <div className="field">
+                </div>
+              </div>
 
-              <label htmlFor="userName" className="label">User Name: </label>
-              <div className="control has-icons-left">
+              <div className="field">
+
+                <label htmlFor="email" className="label"> Email: </label>
                 <input
                   onChange={this.handleChange}
-                  value={this.state.userName}
+                  value={this.state.email}
                   type="text"
-                  id="userName"
-                  name="userName"
+                  id="email"
+                  name="email"
                   className="input"
                 />
                 <span className="icon is-small is-left"><i className="fas fa-user"></i></span>
+              </div>
+
+              <div className="field">
+                <p className="control has-icons-left">
+                  <label htmlFor="password" className="label">Password: </label>
+
+                  <input
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                    type="password"
+                    id="password"
+                    name="password"
+                    className="input"
+                  />
+                  <span className="icon is-small is-left"> <i className="fas fa-lock"></i> </span>
+                </p>
 
               </div>
-            </div>
 
-            <div className="field">
-
-              <label htmlFor="email" className="label"> Email: </label>
-              <input
-                onChange={this.handleChange}
-                value={this.state.email}
-                type="text"
-                id="email"
-                name="email"
-                className="input"
-              />
-              <span className="icon is-small is-left"><i className="fas fa-user"></i></span>
-            </div>
-
-            <div className="field">
-              <p className="control has-icons-left">
-                <label htmlFor="password" className="label">Password: </label>
-
-                <input
-                  onChange={this.handleChange}
-                  value={this.state.password}
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="input"
-                />
-                <span className="icon is-small is-left"> <i className="fas fa-lock"></i> </span>
-              </p>
-
-            </div>
-
-            <div className="field">
-              <label htmlFor="zodiacSign" className="label">Zodiac Sign: </label>
-              <div className="control">
-                <input
-                  onChange={this.handleChange}
-                  value={this.state.zodiacSign}
-                  type="text"
-                  id="zodiacSign"
-                  name="zodiacSign"
-                  className="input"
-                />
+              <div className="field">
+                <label htmlFor="zodiacSign" className="label">Zodiac Sign: </label>
+                <div className="control">
+                  <input
+                    onChange={this.handleChange}
+                    value={this.state.zodiacSign}
+                    type="text"
+                    id="zodiacSign"
+                    name="zodiacSign"
+                    className="input"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="field">
-              <label htmlFor="city" className="label">City: </label>
-              <div className="control">
-                <input
-                  onChange={this.handleChange}
-                  value={this.state.city}
-                  type="text"
-                  id="city"
-                  name="city"
-                  className="input"
-                />
+              <div className="field">
+                <label htmlFor="city" className="label">City: </label>
+                <div className="control">
+                  <input
+                    onChange={this.handleChange}
+                    value={this.state.city}
+                    type="text"
+                    id="city"
+                    name="city"
+                    className="input"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="field">
-              <label htmlFor="profileImg" action="/upload" className="label">Profile Image: </label>
-              <div className="control">
-                <input
-                  onChange={this.handleFile}
-                  type="file"
-                  id="profileImg"
-                  name="profileImg"
-                  className="input"
-                />
+              <div className="field">
+                <label htmlFor="profileImg" action="/upload" className="label">Profile Image: </label>
+                <div className="control">
+                  <input
+                    onChange={this.handleFile}
+                    type="file"
+                    id="profileImg"
+                    name="profileImg"
+                    className="input"
+                  />
+                </div>
               </div>
-            </div>
-            <button className="button">Submit</button>
-          </form>
+              <button className="button is-primary is-fullwidth">Submit</button>
+
+            </form>
+          </div>     <div className="modal-card-foot">
+            <NavLink exact to="/signin">Signin</NavLink></div>
         </div>
-
-      </div>
+      </div >
 
     );
   }

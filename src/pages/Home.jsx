@@ -3,13 +3,14 @@ import "../styles/Home.css";
 import apiHandler from "../api/apiHandler";
 import 'bulma/css/bulma.css';
 import Signin from "./Signin";
+import Signup from "./Signup";
 
 
 class Home extends Component {
 
   state = {
     memes: [],
-
+    showSignin: "signin"
   }
 
 
@@ -34,6 +35,8 @@ class Home extends Component {
         <div className="titlecolor">
           <h1>Feed :</h1></div>
         <Signin />
+
+
         <div className="container" >
 
           {this.state.memes.map((meme) => {
