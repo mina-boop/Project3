@@ -16,8 +16,9 @@ class LikeButton extends Component {
     const color = colors[this.state.likes % colors.length];
 
     const btnStyle = {
+     Image:"/Client/public/like-icon.png",
       backgroundColor: color,
-      padding: '10px 20px',
+      padding: '20px 20px',
       color: 'white',
      
     
