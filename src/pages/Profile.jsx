@@ -14,13 +14,12 @@ class Profile extends Component {
   componentDidMount() {
     apiHandler
     .getUserMemes()
-    .then((dbRes)=>{
-      console.log("dbRes here !!!!", dbRes)  
+    .then((dbRes)=>{  
       this.setState({
        meme  : dbRes
-      })
+      })})
       .catch((e) => console.log(e));
-  })}
+  }
 
   handleDelete = (event) => {
     console.log("Delete");
