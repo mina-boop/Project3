@@ -25,6 +25,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log(this.state.memes)
     return (
       <div>
         <div className="titlecolor">
@@ -41,7 +42,11 @@ class Home extends Component {
                     {" "}
                     posted by {meme.creator.userName} at {meme.createdAt}
                   </p>
+                  <div className="imgBox">
                   <img src={meme.memeimage} alt="" className="img" />
+                  <span className="topText">{meme.caption1}</span>
+                  <span className="bottomText">{meme.caption2}</span>
+                  </div>
                   <span>
                     <img
                       className="icon"

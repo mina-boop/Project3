@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import Imagedb from "../../data/Memedb.json";
 import SearchBar from "./SearchBar";
-import "../../styles/form.css"
+import "../../styles/form.css";
+
 
 <SearchBar />;
 
@@ -93,7 +94,9 @@ class FormMeme extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
+               
                     <div className="control">
+              
                         <label className="label" htmlFor="caption2">Caption 2 : </label>
                         <input
                             className="input"
@@ -102,6 +105,7 @@ class FormMeme extends Component {
                             name="caption2"
                             onChange={this.handleChange}
                         />
+                 
                     </div>
 
                     <div className="control">
@@ -123,6 +127,7 @@ class FormMeme extends Component {
                     <div>
                         <button className="button " type="submit">Submit</button>
                     </div>
+                
                 </form>
             </div>
         );
