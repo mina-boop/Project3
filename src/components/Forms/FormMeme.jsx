@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import Imagedb from "../../data/Memedb.json";
 import SearchBar from "./SearchBar";
+import "../../styles/form.css"
 
 <SearchBar />;
 
@@ -61,8 +62,8 @@ class FormMeme extends Component {
         });
 
         return (
-            <div className="container">
-                <form forHTML="meme" onSubmit={this.handleCreate}>
+            <div className="container-form">
+                <form className="field" forHTML="meme" onSubmit={this.handleCreate}>
                     <h1 className="title">Meme's form !</h1>
 
                     <div>
@@ -82,7 +83,7 @@ class FormMeme extends Component {
                     })}
 
 
-                    <div>
+                    <div className="control">
                         <label className="label" htmlFor="caption1">Caption 1 : </label>
                         <input
                             className="input"
@@ -92,7 +93,7 @@ class FormMeme extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                    <div>
+                    <div className="control">
                         <label className="label" htmlFor="caption2">Caption 2 : </label>
                         <input
                             className="input"
@@ -103,7 +104,7 @@ class FormMeme extends Component {
                         />
                     </div>
 
-                    <div>
+                    <div className="control">
                         <label className="label" htmlFor="memeimage" action="/upload">
                             Meme: :{" "}
                         </label>
@@ -115,7 +116,9 @@ class FormMeme extends Component {
                             onChange={this.handleFileUpload}
                         />
                     </div>
-                    {this.state.memeimage && <div><input type="text" id="caption1" className="input" placeholder={this.state.caption1} /><div><img className="image" src={this.state.memeimage} alt="" /></div><input type="text" id="caption2" className="input" placeholder={this.state.caption2} /></div>}
+                    {this.state.memeimage &&
+                        <div className="control"><input type="text" id="caption1" className="input" placeholder={this.state.caption1} /><img className="image" src={this.state.memeimage} alt="" />
+                            <input type="text" id="caption2" className="input" placeholder={this.state.caption2} /></div>}
 
                     <div>
                         <button className="button " type="submit">Submit</button>
