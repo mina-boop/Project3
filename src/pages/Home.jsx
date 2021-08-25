@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import "../styles/Home.css";
 import apiHandler from "../api/apiHandler";
 import 'bulma/css/bulma.css';
+import Signin from "./Signin";
 
 
 class Home extends Component {
 
   state = {
     memes: [],
-    showModal: "",
+
   }
 
 
@@ -26,19 +27,13 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props)
 
 
     return (
       <div>
         <div className="titlecolor">
           <h1>Feed :</h1></div>
-        {this.props.isLoggedIn && <div class="modal is-active">
-          <div class="modal-background"></div>
-          <div class="modal-content">
-          </div>
-          <button class="modal-close is-large" aria-label="close" onClick={() => { this.setState({ showModal: !this.state.showModal }) }}></button>
-        </div>}
+        <Signin />
         <div className="container" >
 
           {this.state.memes.map((meme) => {
