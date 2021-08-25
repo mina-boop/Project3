@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
-import 'bulma/css/bulma.css';
+import "bulma/css/bulma.css";
 import "../styles/Home.css";
-
 
 class Profile extends Component {
   state = {
@@ -13,14 +12,15 @@ class Profile extends Component {
 
   componentDidMount() {
     apiHandler
-    .getUserMemes()
-    .then((dbRes)=>{
-      console.log("dbRes here !!!!", dbRes)  
-      this.setState({
-       meme  : dbRes
+      .getUserMemes()
+      .then((dbRes) => {
+        console.log("dbRes here !!!!", dbRes);
+        this.setState({
+          meme: dbRes,
+        });
       })
       .catch((e) => console.log(e));
-  })}
+  }
 
   handleDelete = (event) => {
     console.log("Delete");
@@ -29,7 +29,6 @@ class Profile extends Component {
     console.log("Update");
   };
   render() {
-    
     const { context } = this.props;
     const { user } = context;
     console.log(user.profileImg);
@@ -39,10 +38,9 @@ class Profile extends Component {
 
         <section className="profile">
           <div>
-          <figure className="image is-128x128">
-            <img src={user.profileImg} alt={user.userName} />
-          </figure>
-
+            <figure className="image is-128x128">
+              <img src={user.profileImg} alt={user.userName} />
+            </figure>
           </div>
           <div className="user-presentation">
             <h2>{user.userName}</h2>
@@ -54,21 +52,18 @@ class Profile extends Component {
           <div className="memes">
             <h3>Your memes</h3>
             <div className="meme">
-            <div className="container">
-            {this.state.meme.map((meme)=>{
-              
-              return(
-                 <div className="grid">
-                  <article className="box">
-                   <p>Posted </p>
-                   <img src={meme.memeimage} alt="" />
-                  </article>
-                  </div>
-              )
-            })}
-            </div>
-
-
+              <div className="container">
+                {this.state.meme.map((meme) => {
+                  return (
+                    <div className="grid">
+                      <article className="box">
+                        <p>Posted </p>
+                        <img src={meme.memeimage} alt="" />
+                      </article>
+                    </div>
+                  );
+                })}
+              </div>
 
               <div className="buttons">
                 <span>
