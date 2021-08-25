@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../styles/Home.css";
 import apiHandler from "../api/apiHandler";
-import 'bulma/css/bulma.css';
+import "bulma/css/bulma.css";
 import Signin from "./Signin";
 import FormComment from "../components/Forms/FormComment";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 class Home extends Component {
-
   state = {
     memes: [],
     memeId: null,
@@ -24,8 +23,8 @@ class Home extends Component {
       .getAllUsersMemes()
       .then((dbRes) => {
         this.setState({
-          memes: dbRes
-        })
+          memes: dbRes,
+        });
       })
       .catch((e) => console.log(e))
 
@@ -63,27 +62,45 @@ class Home extends Component {
     this.setState({ addComment: !this.state.addComment })
   }
   render() {
-
     return (
       <div>
         <div className="titlecolor">
-          <h1>Feed :</h1></div>
+          <h1>Feed :</h1>
+        </div>
         <Signin />
-        <div className="container" >
-          {this.state.memes.map((meme) => {
 
+        <div className="container">
+          {this.state.memes.map((meme) => {
             return (
               <div key={meme._id} className="grid">
                 <article className="box">
-                  <p> posted by {meme.creator.userName} at {meme.createdAt}</p>
-                  <img src={meme.memeimage} alt="" className="img" />
+                  <p>
+                    {" "}
+                    posted by {meme.creator.userName} at {meme.createdAt}
+                  </p>
+                  <div className="imgBox">
+                    <img src={meme.memeimage} alt="" className="img" />
 
-                  <div className="button is-small" onClick={() => {
-                    this.handleClick(meme._id)
-                  }} ><FontAwesomeIcon icon="chevron-down" /></div><span className="button is-small" onClick={this.addComment}>Comment</span>{this.state.addComment && <FormComment updateComments={this.handleAddComment} memeById={meme._id} />}
-                </article>  {this.state.memeId === meme._id && this.state.comments.map((comment) => { return <div className="box" key={comment._id}><span>{comment.text}</span></div> })}
+                    <div className="button is-small" onClick={() => {
+                      this.handleClick(meme._id)
+                    }} ><FontAwesomeIcon icon="chevron-down" /></div><span className="button is-small" onClick={this.addComment}>Comment</span>{this.state.addComment && <FormComment updateComments={this.handleAddComment} memeById={meme._id} />}
+                    {this.state.memeId === meme._id && this.state.comments.map((comment) => { return <div className="box" key={comment._id}><span>{comment.text}</span></div> })}
+                    <span className="topText">{meme.caption1}</span>
+                    <span className="bottomText">{meme.caption2}</span>
+                  </div>
+                  <span>
+                    <img
+                      className="icon"
+                      src="../comment-icon.png"
+                      alt="icon-comment"
+                    />
+                  </span>
+                  <span>
+                    <Likebutton />
+                  </span>
+                </article>
               </div>
-            )
+            );
           })}
         </div>
       </div>

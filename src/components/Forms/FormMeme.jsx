@@ -12,7 +12,6 @@ class FormMeme extends Component {
         memeimage: "",
         search: "",
     };
-
     handleChange = (event) => {
         const { value, name } = event.target
         /*         if (this.state.search !== "") {
@@ -20,13 +19,11 @@ class FormMeme extends Component {
                 } */
         this.setState({ [name]: value });
     };
-
     handleClickImage = (event) => {
         event.preventDefault()
         const value = event.target.src;
         this.setState({ memeimage: value });
     };
-
     handleSearchValue = (event) => {
         this.setState({
             search: event,
@@ -36,14 +33,12 @@ class FormMeme extends Component {
         handleFileUpload = (event) => {
             this.setState({ memeimage: event.target.files[0] });
         } */
-
     handleCreate = (event) => {
         event.preventDefault();
         const fd = new FormData();
         fd.append("memeimage", this.state.memeimage);
         fd.append("caption1", this.state.caption1);
         fd.append("caption2", this.state.caption2);
-
         apiHandler
             .postMemes(fd)
             .then(() => {
@@ -52,18 +47,15 @@ class FormMeme extends Component {
                 console.log(error);
             });
     };
-
     render() {
         const filteredImage = Imagedb.filter((image) => {
             if (this.state.search === "") return false;
             return image.name.toLowerCase().includes(this.state.search.toLocaleLowerCase())
         });
-
         return (
             <div className="container-form">
                 <form className="field" onSubmit={this.handleCreate}>
                     <h1 className="title">Meme's form !</h1>
-
                     <div>
                         <SearchBar
                             handleChange={this.handleSearchValue}
@@ -71,7 +63,6 @@ class FormMeme extends Component {
                             onChange={this.handleOnChange}
                         />
                     </div>
-
                     {filteredImage.map((image) => {
                         return (
                             <div className="box row" key={image.name} onClick={this.handleClickImage}>
@@ -79,8 +70,6 @@ class FormMeme extends Component {
                             </div>
                         );
                     })}
-
-
                     <div className="control">
                         <label className="label" htmlFor="caption1">Caption 1 : </label>
                         <input
@@ -101,7 +90,6 @@ class FormMeme extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-
                     <div className="control">
                         <label className="label" htmlFor="memeimage" action="/upload">
                             Meme: :{" "}
@@ -117,7 +105,6 @@ class FormMeme extends Component {
                     {this.state.memeimage &&
                         <div className="control"><input type="text" id="caption1" className="input" placeholder={this.state.caption1} /><img className="image" src={this.state.memeimage} alt="" />
                             <input type="text" id="caption2" className="input" placeholder={this.state.caption2} /></div>}
-
                     <div>
                         <button className="button " type="submit">Submit</button>
                     </div>
@@ -126,5 +113,4 @@ class FormMeme extends Component {
         );
     }
 }
-
 export default FormMeme;

@@ -50,6 +50,13 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+
+  PatchUserInfos(userInfos) {
+    return service
+      .patch("/api/users/me", userInfos)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
   postMemes(meme) {
     return service
       .post("/api/memes/create", meme)
@@ -81,6 +88,15 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+
+  deleteMemes(id) {
+    return service
+      .delete("/api/memes/" + id)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+
 };
 
 export default apiHandler;

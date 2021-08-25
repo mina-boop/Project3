@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { withUser } from "../Auth/withUser";
 import "bulma/css/bulma.css";
+import apiHandler from "../../api/apiHandler";
 
 class FormSettings extends Component {
   state = {
@@ -12,41 +13,80 @@ class FormSettings extends Component {
     city: "",
     profileImg: "",
   };
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    apiHandler
+      .getUserInfos(id)
+      .then((userInfos) => {
+        console.log(userInfos);
+        const data = userInfos;
+
+        this.setState({
+          ...data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   handleChange = (event) => {
+    console.log("here", event.target.value);
     const value = event.target.value;
     const key = event.target.name;
 
     this.setState({ [key]: value });
   };
 
+  handleFile = (event) => {
+    this.setState({
+      profileImg: event.target.files[0],
+    });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
+    const fd = new FormData();
+    fd.append("profileImg", this.state.profileImg);
+    fd.append("email", this.state.email);
+    fd.append("userName", this.state.userName);
+    fd.append("password", this.state.password);
+    fd.append("zodiacSign", this.state.zodiacSign);
+    fd.append("city", this.state.city);
+    const id = this.props.match.params.id;
+    
+    apiHandler
+      .PatchUserInfos(fd, id)
+      .then((userInfosRes) => {
+        console.log(userInfosRes);
+        this.setState({ ...userInfosRes.data});
+        
+        this.props.history.push("/profile");
+        
+       
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    const User = {
-      email: this.state.email,
-      password: this.state.password,
-      userName: this.state.userName,
-      zodiacSign: this.state.zodiacSign,
-      city: this.state.city,
-      profileImg: this.state.profileImg,
-    };
+    console.log("submit", event);
   };
 
   render() {
+    console.log(this.state);
+
     return (
       <div className="card">
         <div className="card-content">
           <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
-            <h2>Edit your infos</h2>
+            <h2>Edit your infos here</h2>
 
             <div className="field">
               <label htmlFor="userName" className="label">
-                User Name:{" "}
+                User Name:
               </label>
               <div className="control has-icons-left">
                 <input
-                  placeholder={this.state.userName}
                   onChange={this.handleChange}
                   value={this.state.userName}
                   type="text"
@@ -62,12 +102,10 @@ class FormSettings extends Component {
 
             <div className="field">
               <label htmlFor="email" className="label">
-                {" "}
-                Email:{" "}
+                Email:
               </label>
               <div className="control has-icons-left">
                 <input
-                  placeholder={this.state.email}
                   onChange={this.handleChange}
                   value={this.state.email}
                   type="text"
@@ -83,7 +121,7 @@ class FormSettings extends Component {
             <div className="field">
               <p className="control has-icons-left">
                 <label htmlFor="password" className="label">
-                  Password:{" "}
+                  Password:
                 </label>
 
                 <input
@@ -95,19 +133,17 @@ class FormSettings extends Component {
                   className="input"
                 />
                 <span className="icon is-small is-left">
-                  {" "}
-                  <i className="fas fa-lock"></i>{" "}
+                  <i className="fas fa-lock"></i>
                 </span>
               </p>
             </div>
 
             <div className="field">
               <label htmlFor="zodiacSign" className="label">
-                Zodiac Sign:{" "}
+                Zodiac Sign:
               </label>
               <div className="control">
                 <input
-                  placeholder={this.state.zodiacSign}
                   onChange={this.handleChange}
                   value={this.state.zodiacSign}
                   type="text"
@@ -120,11 +156,10 @@ class FormSettings extends Component {
 
             <div className="field">
               <label htmlFor="city" className="label">
-                City:{" "}
+                City:
               </label>
               <div className="control">
                 <input
-                  placeholder={this.state.city}
                   onChange={this.handleChange}
                   value={this.state.city}
                   type="text"
@@ -137,12 +172,11 @@ class FormSettings extends Component {
 
             <div className="field">
               <label htmlFor="profileImg" action="/upload" className="label">
-                Profile Image:{" "}
+                Profile Image:
               </label>
               <div className="control">
                 <input
-                  onChange={this.handleChange}
-                  value={this.state.profileImg}
+                  onChange={this.handleFile}
                   type="file"
                   id="profileImg"
                   name="profileImg"
@@ -151,6 +185,7 @@ class FormSettings extends Component {
               </div>
             </div>
             <button>Submit</button>
+           
           </form>
         </div>
       </div>

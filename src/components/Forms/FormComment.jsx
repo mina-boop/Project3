@@ -17,6 +17,7 @@ class FormComment extends Component {
         apiHandler
             .postComment(this.props.memeById, this.state)
             .then(() => {
+
                 this.props.updateComments()
             })
             .catch((error) => {
