@@ -41,8 +41,8 @@ class FormSignin extends Component {
 
     return (
       <div>
-        <div class="modal is-active">
-          <div class="modal-background"></div>
+        <div className="modal is-active">
+          <div className="modal-background"></div>
           <div className="modal-card">
             <header className="modal-card-head"><h2 className="title">Signin</h2></header>
             <div className="modal-card-body">

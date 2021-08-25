@@ -82,7 +82,7 @@ class FormSignup extends Component {
                 <input
                   onChange={this.handleChange}
                   value={this.state.email}
-                  type="text"
+                  type="email"
                   id="email"
                   name="email"
                   className="input"

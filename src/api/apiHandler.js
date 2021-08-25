@@ -69,6 +69,18 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+  postComment(memeId, comment) {
+    return service
+      .post(`/api/memes/${memeId}/comment`, comment)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+  getComment(memeId) {
+    return service
+      .post(`/api/memes/${memeId}/allComments`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 };
 
 export default apiHandler;

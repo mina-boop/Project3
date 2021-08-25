@@ -4,7 +4,6 @@ import Imagedb from "../../data/Memedb.json";
 import SearchBar from "./SearchBar";
 import "../../styles/form.css"
 
-<SearchBar />;
 
 class FormMeme extends Component {
     state = {
