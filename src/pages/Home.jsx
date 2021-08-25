@@ -44,7 +44,7 @@ class Home extends Component {
                   <p> posted by {meme.creator.userName} at {meme.createdAt}</p>
                   <img src={meme.memeimage} alt="" className="img" />
                   <span><img className="icon" src="../comment-icon.png" alt="icon-comment" /></span>
-                  <span><img className="icon" src="../like-icon.png" alt="like-comment" /></span>
+                  <span><img className="icon" src="../like-icon.png" alt="icon-like" /></span>
                 </article>
               </div>
             )
