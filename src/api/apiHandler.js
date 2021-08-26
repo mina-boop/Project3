@@ -76,6 +76,13 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+
+  deleteMemes(id) {
+    return service
+      .delete("/api/memes/" + id)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
   postComment(memeId, comment) {
     return service
       .post(`/api/memes/${memeId}/comment`, comment)
@@ -89,12 +96,17 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  deleteMemes(id) {
+  deleteComments(memeId, commentId) {
+    console.log(commentId,"this is comment id")
     return service
-      .delete("/api/memes/" + id)
+      .delete(`/api/memes/${memeId}/${commentId}`)
       .then((res) => res.data)
       .catch(errorHandler);
   },
+
+
+
+
 
 
 };
