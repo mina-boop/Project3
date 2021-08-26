@@ -80,14 +80,13 @@ class Home extends Component {
                   </p>
                   <div className="imgBox">
                     <img src={meme.memeimage} alt="" className="img" />
-
-                    <div className="button is-small" onClick={() => {
-                      this.handleClick(meme._id)
-                    }} ><FontAwesomeIcon icon="chevron-down" /></div><span className="button is-small" onClick={this.addComment}>Comment</span>{this.state.addComment && <FormComment updateComments={this.handleAddComment} memeById={meme._id} />}
-                    {this.state.memeId === meme._id && this.state.comments.map((comment) => { return <div className="box" key={comment._id}><span>{comment.text}</span></div> })}
                     <span className="topText">{meme.caption1}</span>
                     <span className="bottomText">{meme.caption2}</span>
                   </div>
+                  <div className="button is-small" onClick={() => {
+                    this.handleClick(meme._id)
+                  }} ><FontAwesomeIcon icon="chevron-down" /></div><span className="button is-small" onClick={this.addComment}>Comment</span>{this.state.addComment && <FormComment updateComments={this.handleAddComment} memeById={meme._id} />}
+                  {this.state.memeId === meme._id && this.state.comments.map((comment) => { return <div className="box" key={comment._id}><span>{comment.text}</span></div> })}
                   <span>
                     <img
                       className="icon"
@@ -96,8 +95,8 @@ class Home extends Component {
                     />
                   </span>
                   <span>
-                    <Likebutton />
-                  </span>
+                    {/*                     <Likebutton />
+ */}                  </span>
                 </article>
               </div>
             );
