@@ -50,21 +50,21 @@ class Profile extends Component {
         <section className="profile">
           <div>
             <figure className="image is-128x128">
-              <img
+              <img className="is-rounded"
                 src={this.state.profile.profileImg}
                 alt={this.state.profile.userName}
               />
             </figure>
           </div>
           <div className="user-presentation">
-            <h2>{this.state.profile.userName}</h2>
+            
             <Link className="link" to="/profile/settings">
               Edit profile
             </Link>
           </div>
 
           <div className="memes">
-            <h3>Your memes</h3>
+            <h3>My memes</h3>
             <div className="meme">
               <div className="container">
                 {this.state.meme.map((meme) => {
