@@ -7,7 +7,6 @@ import FormComment from "../components/Forms/FormComment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withUser } from "../components/Auth/withUser";
 
-
 class Home extends Component {
   state = {
     memes: [],
@@ -48,7 +47,7 @@ class Home extends Component {
       this.getComments(id)
     }
   };
-  // c'est cette fonction qui rafraichi les comments
+  // function that refreshes comments
   handleAddComment = (id) => {
     this.setState({ memeId: id, closeComment: false, addComment: false });
     this.getComments(id)
@@ -73,7 +72,7 @@ class Home extends Component {
     return (
       <div>
         <div className="titlecolor">
-          <h1>Feed :</h1>
+          <h1>New & Fresh</h1>
         </div>
         <Signin />
 

@@ -51,7 +51,7 @@ const NavMain = (props) => {
               </div>
               {context.user &&
                 <div className="navbar-item">
-                  <NavLink exact to="/memeform"><FontAwesomeIcon icon="hashtag" /></NavLink>
+                  <NavLink exact to="/memeform"><FontAwesomeIcon icon="hashtag" /> Create a meme</NavLink>
                 </div>
               }
               <div className="navbar-item">
