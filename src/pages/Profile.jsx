@@ -49,12 +49,12 @@ class Profile extends Component {
 
         <section className="profile">
           <div>
-            <figure className="image is-128x128">
-              <img className="is-rounded"
+            
+              <img className="profileimg"
                 src={this.state.profile.profileImg}
                 alt={this.state.profile.userName}
               />
-            </figure>
+           
           </div>
           <div className="user-presentation">
             

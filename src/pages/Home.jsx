@@ -126,7 +126,7 @@ class Home extends Component {
                           </span>
                           {this.props.context.user._id ===
                             comment.creator._id && (
-                            <button
+                            <button  className="delete is-small"
                               onClick={() =>
                                 this.handleDelete(comment._id, meme._id)
                               }
