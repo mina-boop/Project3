@@ -52,12 +52,13 @@ article .imgBox img {
 
 article .imgBox span {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 42px;
+  font-size: 25px;
   color: white;
   text-transform: uppercase;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
   position: absolute;
+  line-height: 1.1;
 }
 
 article .imgBox .topText {
