@@ -31,9 +31,8 @@ class Home extends Component {
     apiHandler
       .deleteComments(memeId, commentId)
       .then(() => {
-  
 
-     
+      
       })
       .catch((e) => console.log(e));
   };
