@@ -5,6 +5,8 @@ import "bulma/css/bulma.css";
 import Signin from "./Signin";
 import FormComment from "../components/Forms/FormComment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withUser } from "../components/Auth/withUser";
+
 
 class Home extends Component {
   state = {
@@ -27,18 +29,26 @@ class Home extends Component {
   }
 
   handleDelete = (commentId, memeId) => {
-
     apiHandler
       .deleteComments(memeId, commentId)
       .then(() => {
-  
-
+      // ta le current user grace au props du context 
+      //donc tu peut faire this.props.context et la normalement ta ton user c'
+        /* if(this.comment.creator._id===this.props.context.user._id){ */
+          this.handleClick(memeId)
+          
+     /*      this.setState({
+            comment:[],
+           }); */
+// le memeId il sert à retrouver le meme pas affiché tout les memes
+        /* } */
      
       })
       .catch((e) => console.log(e));
   };
 
   handleClick = (id) => {
+ // donc il faut vérifier que le current user soi différent du creator  ok
     if (id === this.state.memeId) {
       this.setState({ memeId: null, comments: [] });
     } else {
@@ -55,6 +65,7 @@ class Home extends Component {
         .catch((e) => console.log(e));
     }
   };
+  // c'est cette fonction qui rafraichi les comments
   handleAddComment = (id) => {
     this.setState({ memeId: id, closeComment: false });
     apiHandler
@@ -70,6 +81,7 @@ class Home extends Component {
     this.setState({ addComment: !this.state.addComment });
   };
   render() {
+    console.log(this.props)
     return (
       <div>
         <div className="titlecolor">
@@ -84,25 +96,34 @@ class Home extends Component {
                 <article className="box">
                   <p>
                     {" "}
-                    posted by {meme.creator.userName} on {new Date(meme.createdAt).toLocaleDateString("en", {year: 'numeric', month: 'long', day: 'numeric' })}
+                    posted by {meme.creator.userName} on{" "}
+                    {new Date(meme.createdAt).toLocaleDateString("en", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
                   </p>
                   <div className="imgBox">
                     <img src={meme.memeimage} alt="" className="img" />
 
-                   
                     <span className="topText">{meme.caption1}</span>
                     <span className="bottomText">{meme.caption2}</span>
                   </div>
                   <span>
-                  <div className="button is-small" onClick={() => {
-                      this.handleClick(meme._id)
-                    }} ><FontAwesomeIcon icon="chevron-down" /></div><span className="button is-small" onClick={this.addComment}>Comment</span>{this.state.addComment && <FormComment updateComments={this.handleAddComment} memeById={meme._id} />}
-                    {this.state.memeId === meme._id && this.state.comments.map((comment) => { return <div className="box" key={comment._id}><span>{comment.text}</span></div> })}
-                    
+                    <div
+                      className="button is-small"
+                      onClick={() => {
+                        this.handleClick(meme._id);
+                      }}
+                    >
+                      <FontAwesomeIcon icon="chevron-down" />
+                    </div>
+                    <span className="button is-small" onClick={this.addComment}>
+                      Comment
+                    </span>
+                 
                   </span>
-                  <span>
-                    
-                  </span>
+                
                   {this.state.addComment && (
                     <FormComment
                       updateComments={this.handleAddComment}
@@ -116,12 +137,18 @@ class Home extends Component {
                           <span>
                             {comment.text} posted by: {comment.creator.userName}
                           </span>
-                          <button onClick={() => this.handleDelete(comment._id, meme._id)}>Delete</button>
+                        {this.props.context.user._id === comment.creator._id &&
+          
+                          <button
+                            onClick={() =>
+                              this.handleDelete(comment._id, meme._id)
+                            }
+                          >
+                            Delete
+                          </button>}
                         </div>
                       );
                     })}
-                  <span></span>
-                  <span></span>
                 </article>
               </div>
             );
@@ -132,4 +159,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withUser(Home);
