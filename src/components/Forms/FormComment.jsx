@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 
+
 class FormComment extends Component {
     state = {
         comment: "",
+
     };
 
     handleChange = (event) => {
@@ -11,21 +13,26 @@ class FormComment extends Component {
     };
 
     handleSubmit = (event) => {
-        event.preventDefault();
-        alert("successfully posted!");
-        apiHandler
-            .postComment(this.props.memeById, this.state)
-            .then(() => {
-                this.props.updateComments(this.props.memeById);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        console.log(event.target.value);
+        if (event.key === 'Enter') {
+
+            event.preventDefault();
+            apiHandler
+                .postComment(this.props.memeById, this.state)
+                .then(() => {
+                    this.props.updateComments(this.props.memeById);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     };
 
     render() {
+
         return (
-            <form className="has-addons" onSubmit={this.handleSubmit}>
+
+            <form className="has-addons" onKeyPress={this.handleSubmit}>
                 <div className="control">
                     <span>
                         {" "}
@@ -34,10 +41,9 @@ class FormComment extends Component {
                             type="text"
                             name="comment"
                             onChange={this.handleChange}
-
+                            placeholder="Add a comment..."
                             required
                         />
-                        <button className="button is-small">Add</button>
                     </span>
                 </div>
             </form>

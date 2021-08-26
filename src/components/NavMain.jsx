@@ -1,25 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
-import apiHandler from "../api/apiHandler";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import "../styles/NavMain.css";
+import Logout from "../pages/Logout"
 
 const NavMain = (props) => {
   const { context } = props;
-
-  function handleLogout() {
-    apiHandler
-      .logout()
-      .then(() => {
-        context.removeUser();
-        this.props.history.push('/')
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
 
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -40,23 +26,18 @@ const NavMain = (props) => {
 
           {context.isLoggedIn && (
             <React.Fragment>
-              <div className="navbar-item">
-                <NavLink exact to="/" className="navbar-item">
-                  <FontAwesomeIcon icon="home" ></FontAwesomeIcon>
-                </NavLink>
-              </div>
-              <div className="navbar-item">
-                <NavLink exact to="/profile">
-                  <FontAwesomeIcon icon="user" /></NavLink>
-              </div>
+              <NavLink exact to="/" className="navbar-item">
+                <FontAwesomeIcon icon="home" /><div>Home</div>
+              </NavLink>
+
+              <NavLink exact to="/profile" className="navbar-item">
+                <FontAwesomeIcon icon="user" /><div>Profile</div></NavLink>
               {context.user &&
-                <div className="navbar-item">
-                  <NavLink exact to="/memeform"><FontAwesomeIcon icon="hashtag" /> Create a meme</NavLink>
-                </div>
+                <NavLink exact to="/memeform" className="navbar-item"><FontAwesomeIcon icon="hashtag" /><div>Create a meme</div></NavLink>
               }
-              <div className="navbar-item">
-                <div ><FontAwesomeIcon icon="sign-out-alt" onClick={handleLogout} /></div>
-              </div>
+              <NavLink exact to="/logout" className="navbar-item">
+                <FontAwesomeIcon icon="sign-out-alt" onClick={() => <Logout user={context} />} /><div>Logout</div>
+              </NavLink>
             </React.Fragment>
           )}
 

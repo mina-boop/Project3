@@ -6,6 +6,7 @@ import Signin from "./Signin";
 import FormComment from "../components/Forms/FormComment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withUser } from "../components/Auth/withUser";
+import FeedBack from "../components/FeedBack";
 
 class Home extends Component {
   state = {
@@ -14,6 +15,8 @@ class Home extends Component {
     comments: [],
     closeComment: false,
     addComment: false,
+    httpResponse: null,
+
   };
 
   componentDidMount() {
@@ -31,8 +34,20 @@ class Home extends Component {
     apiHandler
       .deleteComments(memeId, commentId)
       .then(() => {
-        this.getComments(memeId);
-        // this.setState({ memeId: null, closeComment: false });
+        this.setState({
+          httpResponse: {
+            status: "is-danger",
+            message: "Comment deleted!",
+          },
+        });
+        setTimeout(() => {
+          this.getComments(memeId);
+
+          this.setState({
+            httpResponse: null
+          });
+        }, 1000)
+
       })
       .catch((e) => console.log(e));
   };
@@ -48,7 +63,19 @@ class Home extends Component {
   // function that refreshes comments
   handleAddComment = (id) => {
     this.setState({ memeId: id, closeComment: false, addComment: false });
-    this.getComments(id);
+    this.setState({
+      httpResponse: {
+        status: "is-primary",
+        message: "Comment added!",
+      },
+    });
+    setTimeout(() => {
+      this.setState({
+        httpResponse: null
+      });
+      this.getComments(id);
+    }, 1000)
+
   };
 
   getComments(id) {
@@ -67,14 +94,22 @@ class Home extends Component {
     this.setState({ addComment: !this.state.addComment });
   };
   render() {
+    const { httpResponse } = this.state;
+
     return (
       <div>
         <div className="titlecolor">
           <h1>New & Fresh</h1>
         </div>
         <Signin />
-
+        {httpResponse && (
+          <FeedBack
+            message={httpResponse.message}
+            status={httpResponse.status}
+          />
+        )}
         <div className="container">
+
           {this.state.memes.map((meme) => {
             return (
               <div key={meme._id} className="grid">
@@ -98,13 +133,15 @@ class Home extends Component {
                       className="button is-small"
                       onClick={() => this.handleClick(meme._id)}
                     >
-                      <FontAwesomeIcon icon="chevron-down" />
+                      <FontAwesomeIcon icon="list" size="2x" />
                     </div>
                     <span className="button is-small" onClick={this.addComment}>
-                      Comment
+                      <FontAwesomeIcon icon="comment-dots" size="2x" />
                     </span>
                   </span>
+
                   {this.state.addComment && (
+
                     <FormComment
                       updateComments={this.handleAddComment}
                       memeById={meme._id}
@@ -113,21 +150,24 @@ class Home extends Component {
                   {this.state.memeId === meme._id &&
                     this.state.comments.map((comment) => {
                       return (
-                        <div className="box" key={comment._id}>
-                          <span>
-                            {comment.text} posted by: {comment.creator.userName}
-                          </span>
-                          {this.props.context.user._id ===
-                            comment.creator._id && (
-                            <button
-                              class="delete is-small"
-                              onClick={() =>
-                                this.handleDelete(comment._id, meme._id)
-                              }
-                            >
-                              Delete
-                            </button>
-                          )}
+                        <div className="content is-small" >
+                          <div key={comment._id}>
+                            <span>
+                              {comment.text} <i>posted by:</i> {comment.creator.userName}
+
+                              {this.props.context.user._id ===
+                                comment.creator._id && (
+                                  <button
+                                    className="delete is-small"
+                                    onClick={() =>
+                                      this.handleDelete(comment._id, meme._id)
+                                    }
+                                  >
+                                    Delete
+                                  </button>
+                                )}</span>
+                          </div>
+                          <hr />
                         </div>
                       );
                     })}
