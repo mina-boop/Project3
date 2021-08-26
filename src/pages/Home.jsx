@@ -31,45 +31,44 @@ class Home extends Component {
     apiHandler
       .deleteComments(memeId, commentId)
       .then(() => {
-        this.handleClick(memeId);
+        this.getComments(memeId)
+        // this.setState({ memeId: null, closeComment: false });
+
       })
       .catch((e) => console.log(e));
   };
 
   handleClick = (id) => {
     if (id === this.state.memeId) {
-      this.setState({ memeId: null, comments: [] });
+      this.setState({ memeId: null });
+
     } else {
       this.setState({ memeId: id });
-      apiHandler
-        .getComments(id)
-        .then((dbRes) => {
-          console.log(dbRes);
-
-          this.setState({
-            comments: dbRes,
-          });
-        })
-        .catch((e) => console.log(e));
+      this.getComments(id)
     }
   };
   // function that refreshes comments
   handleAddComment = (id) => {
-    this.setState({ memeId: id, closeComment: false });
+    this.setState({ memeId: id, closeComment: false, addComment: false });
+    this.getComments(id)
+  };
+
+  getComments(id) {
     apiHandler
       .getComments(id)
       .then((dbRes) => {
         this.setState({
           comments: dbRes,
+          closeComment: true
         });
       })
       .catch((e) => console.log(e));
-  };
+  }
+
   addComment = () => {
     this.setState({ addComment: !this.state.addComment });
   };
   render() {
-    console.log(this.props);
     return (
       <div>
         <div className="titlecolor">
@@ -93,16 +92,13 @@ class Home extends Component {
                   </p>
                   <div className="imgBox">
                     <img src={meme.memeimage} alt="" className="img" />
-
                     <span className="topText">{meme.caption1}</span>
                     <span className="bottomText">{meme.caption2}</span>
                   </div>
                   <span>
                     <div
                       className="button is-small"
-                      onClick={() => {
-                        this.handleClick(meme._id);
-                      }}
+                      onClick={() => this.handleClick(meme._id)}
                     >
                       <FontAwesomeIcon icon="chevron-down" />
                     </div>
@@ -110,7 +106,6 @@ class Home extends Component {
                       Comment
                     </span>
                   </span>
-
                   {this.state.addComment && (
                     <FormComment
                       updateComments={this.handleAddComment}
@@ -124,16 +119,15 @@ class Home extends Component {
                           <span>
                             {comment.text} posted by: {comment.creator.userName}
                           </span>
-                          {this.props.context.user._id ===
-                            comment.creator._id && (
-                            <button  className="delete is-small"
+                          {this.props.context.user._id === comment.creator._id &&
+
+                            <button
                               onClick={() =>
                                 this.handleDelete(comment._id, meme._id)
                               }
                             >
                               Delete
-                            </button>
-                          )}
+                            </button>}
                         </div>
                       );
                     })}
