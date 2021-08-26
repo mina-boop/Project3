@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "../styles/NavMain.css";
 
@@ -13,6 +14,7 @@ const NavMain = (props) => {
       .logout()
       .then(() => {
         context.removeUser();
+        this.props.history.push('/')
       })
       .catch((error) => {
         console.log(error);
@@ -34,35 +36,30 @@ const NavMain = (props) => {
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start">
-          <NavLink exact to="/" className="navbar-item">
-            Home
-          </NavLink>
-        </div>
-
         <div className="navbar-end">
+
           {context.isLoggedIn && (
             <React.Fragment>
               <div className="navbar-item">
-                <div className="buttons">
-                  <NavLink exact to="/profile"><div className="button is-light">My profile</div></NavLink>
-                  {context.user && <NavLink exact to="/memeform"><div className="button is-primary" >Create meme</div></NavLink>}
-                  <button className="button is-info" onClick={handleLogout}>Logout</button></div></div>
-            </React.Fragment>
-          )}
-          {!context.isLoggedIn && (
-            <React.Fragment>
+                <NavLink exact to="/" className="navbar-item">
+                  <FontAwesomeIcon icon="home" ></FontAwesomeIcon>
+                </NavLink>
+              </div>
               <div className="navbar-item">
-                <div className="buttons">
-                  <div className="button is-light"> <NavLink to="/signin">Log in</NavLink></div>
-
-                  <button className="button is-primary">
-                    <NavLink to="/signup">Create account</NavLink>
-                  </button>
+                <NavLink exact to="/profile">
+                  <FontAwesomeIcon icon="user" /></NavLink>
+              </div>
+              {context.user &&
+                <div className="navbar-item">
+                  <NavLink exact to="/memeform"><FontAwesomeIcon icon="hashtag" /></NavLink>
                 </div>
+              }
+              <div className="navbar-item">
+                <div ><FontAwesomeIcon icon="sign-out-alt" onClick={handleLogout} /></div>
               </div>
             </React.Fragment>
           )}
+
         </div>
       </div>
     </nav >

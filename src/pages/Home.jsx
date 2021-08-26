@@ -31,9 +31,9 @@ class Home extends Component {
     apiHandler
       .deleteComments(memeId, commentId)
       .then(() => {
-  
 
-     
+
+
       })
       .catch((e) => console.log(e));
   };
@@ -89,19 +89,19 @@ class Home extends Component {
                   <div className="imgBox">
                     <img src={meme.memeimage} alt="" className="img" />
 
-                   
+
                     <span className="topText">{meme.caption1}</span>
                     <span className="bottomText">{meme.caption2}</span>
                   </div>
                   <span>
-                  <div className="button is-small" onClick={() => {
+                    <div className="button is-small" onClick={() => {
                       this.handleClick(meme._id)
                     }} ><FontAwesomeIcon icon="chevron-down" /></div><span className="button is-small" onClick={this.addComment}>Comment</span>{this.state.addComment && <FormComment updateComments={this.handleAddComment} memeById={meme._id} />}
                     {this.state.memeId === meme._id && this.state.comments.map((comment) => { return <div className="box" key={comment._id}><span>{comment.text}</span></div> })}
-                    
+
                   </span>
                   <span>
-                    
+
                   </span>
                   {this.state.addComment && (
                     <FormComment
@@ -115,13 +115,13 @@ class Home extends Component {
                         <div className="box" key={comment._id}>
                           <span>
                             {comment.text} posted by: {comment.creator.userName}
-                          </span>
-                          <button onClick={() => this.handleDelete(comment._id, meme._id)}>Delete</button>
+
+                            <button className="delete" onClick={() => this.handleDelete(comment._id, meme._id)}>Delete</button> </span>
                         </div>
                       );
                     })}
-                 </article>
-                 </div>
+                </article>
+              </div>
             );
           })}
         </div>
