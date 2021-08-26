@@ -32,56 +32,44 @@ class Home extends Component {
     apiHandler
       .deleteComments(memeId, commentId)
       .then(() => {
-      // ta le current user grace au props du context 
-      //donc tu peut faire this.props.context et la normalement ta ton user c'
-        /* if(this.comment.creator._id===this.props.context.user._id){ */
-          this.handleClick(memeId)
-          
-     /*      this.setState({
-            comment:[],
-           }); */
-// le memeId il sert à retrouver le meme pas affiché tout les memes
-        /* } */
-     
+        this.getComments(memeId)
+        // this.setState({ memeId: null, closeComment: false });
+
       })
       .catch((e) => console.log(e));
   };
 
   handleClick = (id) => {
- // donc il faut vérifier que le current user soi différent du creator  ok
     if (id === this.state.memeId) {
-      this.setState({ memeId: null, comments: [] });
+      this.setState({ memeId: null });
+
     } else {
       this.setState({ memeId: id });
-      apiHandler
-        .getComments(id)
-        .then((dbRes) => {
-          console.log(dbRes);
-
-          this.setState({
-            comments: dbRes,
-          });
-        })
-        .catch((e) => console.log(e));
+      this.getComments(id)
     }
   };
   // c'est cette fonction qui rafraichi les comments
   handleAddComment = (id) => {
-    this.setState({ memeId: id, closeComment: false });
+    this.setState({ memeId: id, closeComment: false, addComment: false });
+    this.getComments(id)
+  };
+
+  getComments(id) {
     apiHandler
       .getComments(id)
       .then((dbRes) => {
         this.setState({
           comments: dbRes,
+          closeComment: true
         });
       })
       .catch((e) => console.log(e));
-  };
+  }
+
   addComment = () => {
     this.setState({ addComment: !this.state.addComment });
   };
   render() {
-    console.log(this.props)
     return (
       <div>
         <div className="titlecolor">
@@ -105,25 +93,20 @@ class Home extends Component {
                   </p>
                   <div className="imgBox">
                     <img src={meme.memeimage} alt="" className="img" />
-
                     <span className="topText">{meme.caption1}</span>
                     <span className="bottomText">{meme.caption2}</span>
                   </div>
                   <span>
                     <div
                       className="button is-small"
-                      onClick={() => {
-                        this.handleClick(meme._id);
-                      }}
+                      onClick={() => this.handleClick(meme._id)}
                     >
                       <FontAwesomeIcon icon="chevron-down" />
                     </div>
                     <span className="button is-small" onClick={this.addComment}>
                       Comment
                     </span>
-                 
                   </span>
-                
                   {this.state.addComment && (
                     <FormComment
                       updateComments={this.handleAddComment}
@@ -137,15 +120,15 @@ class Home extends Component {
                           <span>
                             {comment.text} posted by: {comment.creator.userName}
                           </span>
-                        {this.props.context.user._id === comment.creator._i &&
-          
-                          <button
-                            onClick={() =>
-                              this.handleDelete(comment._id, meme._id)
-                            }
-                          >
-                            Delete
-                          </button>}
+                          {this.props.context.user._id === comment.creator._id &&
+
+                            <button
+                              onClick={() =>
+                                this.handleDelete(comment._id, meme._id)
+                              }
+                            >
+                              Delete
+                            </button>}
                         </div>
                       );
                     })}
