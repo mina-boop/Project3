@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import Imagedb from "../../data/Memedb.json";
 import SearchBar from "./SearchBar";
+import FeedBack from "../FeedBack";
 import "../../styles/form.css"
 
+import "../../styles/FormMeme.css"
 
 class FormMeme extends Component {
     state = {
@@ -11,28 +13,25 @@ class FormMeme extends Component {
         caption2: "",
         memeimage: "",
         search: "",
+        httpResponse: null,
+
     };
     handleChange = (event) => {
         const { value, name } = event.target
-        /*         if (this.state.search !== "") {
-                    event.target = this.state.search
-                } */
         this.setState({ [name]: value });
     };
     handleClickImage = (event) => {
         event.preventDefault()
         const value = event.target.src;
-        this.setState({ memeimage: value });
+        this.setState({ memeimage: value, search: "" });
+
     };
     handleSearchValue = (event) => {
         this.setState({
             search: event,
         });
     };
-    /* 
-        handleFileUpload = (event) => {
-            this.setState({ memeimage: event.target.files[0] });
-        } */
+
     handleCreate = (event) => {
         event.preventDefault();
         const fd = new FormData();
@@ -42,27 +41,41 @@ class FormMeme extends Component {
         apiHandler
             .postMemes(fd)
             .then(() => {
+                this.setState({
+                    httpResponse: {
+                        status: "is-primary",
+                        message: "Good job, meme added !",
+                    },
+                });
+                setTimeout(() => { this.props.history.push("/") }, 2000)
             })
             .catch((error) => {
-                console.log(error);
+                this.setState({
+                    httpResponse: {
+                        status: "is-danger",
+                        message: "Something bad happened while adding your meme, try again later",
+                    },
+                });
             });
     };
+
     render() {
         const filteredImage = Imagedb.filter((image) => {
             if (this.state.search === "") return false;
             return image.name.toLowerCase().includes(this.state.search.toLocaleLowerCase())
         });
+
+        const { httpResponse } = this.state;
+
         return (
             <div className="container-form">
                 <form className="field" onSubmit={this.handleCreate}>
                     <h1 className="title">Meme's form !</h1>
-                    <div>
-                        <SearchBar
-                            handleChange={this.handleSearchValue}
-                            value={this.state.search}
-                            onChange={this.handleOnChange}
-                        />
-                    </div>
+                    <SearchBar
+                        handleChange={this.handleSearchValue}
+                        value={this.state.search}
+                        onChange={this.handleOnChange}
+                    />
                     {filteredImage.map((image) => {
                         return (
                             <div className="box row" key={image.name} onClick={this.handleClickImage}>
@@ -90,7 +103,7 @@ class FormMeme extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                    <div className="control">
+                    {/*             <div className="control">
                         <label className="label" htmlFor="memeimage" action="/upload">
                             Meme: :{" "}
                         </label>
@@ -101,13 +114,21 @@ class FormMeme extends Component {
                             name="memeimage"
                             onChange={this.handleFileUpload}
                         />
-                    </div>
+                    </div> */}
                     {this.state.memeimage &&
-                        <div className="control"><input type="text" id="caption1" className="input" placeholder={this.state.caption1} /><img className="image" src={this.state.memeimage} alt="" />
-                            <input type="text" id="caption2" className="input" placeholder={this.state.caption2} /></div>}
+                        <div className="imgBox"><img className="image" src={this.state.memeimage} alt="" />
+                            <span className="topText">{this.state.caption1}</span>
+                            <span className="bottomText"> {this.state.caption2}</span>
+                        </div>}
                     <div>
-                        <button className="button " type="submit">Submit</button>
+                        <button className="button is-primary is-fullwidth" type="submit">Submit</button>
                     </div>
+                    {httpResponse && (
+                        <FeedBack
+                            message={httpResponse.message}
+                            status={httpResponse.status}
+                        />
+                    )}
                 </form>
             </div>
         );

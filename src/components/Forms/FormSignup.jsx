@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter, Redirect, NavLink } from "react-router-dom";
 import { withUser } from "../Auth/withUser";
 import apiHandler from "../../api/apiHandler";
+import FeedBack from "../FeedBack";
+
 import "bulma/css/bulma.css";
 
 class FormSignup extends Component {
@@ -11,7 +13,9 @@ class FormSignup extends Component {
     userName: "",
     profileImg: "",
     zodiacSign: "",
-    city: ""
+    city: "",
+    httpResponse: null,
+
   };
 
   handleChange = (event) => {
@@ -39,10 +43,23 @@ class FormSignup extends Component {
 
     apiHandler.signup(fd)
       .then(() => {
-        this.props.history.push("/");
+        this.setState({
+          httpResponse: {
+            status: "is-primary",
+            message: "Profile created !",
+          },
+        });
+        setTimeout(() => { this.props.history.push("/"); }, 2000)
+
+
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({
+          httpResponse: {
+            status: "is-danger",
+            message: "Something bad happened while updating your signup, try again later",
+          },
+        });
       });
   };
 
@@ -50,6 +67,7 @@ class FormSignup extends Component {
     if (this.props.context.user) {
       return <Redirect to="/" />;
     }
+    const { httpResponse } = this.state;
 
     return (
       <div class="modal is-active">
@@ -58,9 +76,13 @@ class FormSignup extends Component {
           <header className="modal-card-head"><h2 className="title">Signup</h2></header>
           <div className="modal-card-body">
             <form onSubmit={this.handleSubmit} encType="multipart/form-data">
-
+              {httpResponse && (
+                <FeedBack
+                  message={httpResponse.message}
+                  status={httpResponse.status}
+                />
+              )}
               <div className="field">
-
                 <label htmlFor="userName" className="label">User Name: </label>
                 <div className="control has-icons-left">
                   <input

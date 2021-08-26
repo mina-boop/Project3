@@ -3,6 +3,8 @@ import { withRouter, Redirect, NavLink } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../Auth/withUser";
 import 'bulma/css/bulma.css';
+import FeedBack from "../FeedBack";
+
 
 
 
@@ -10,12 +12,13 @@ class FormSignin extends Component {
   state = {
     email: "",
     password: "",
+    httpResponse: null,
+
   };
 
   handleChange = (event) => {
     const key = event.target.name;
     const value = event.target.value;
-
     this.setState({ [key]: value });
   };
 
@@ -25,11 +28,22 @@ class FormSignin extends Component {
     apiHandler
       .signin(this.state)
       .then((data) => {
-        this.props.context.setUser(data);
+        this.setState({
+          httpResponse: {
+            status: "is-primary",
+            message: "Welcome",
+          },
+        });
+        setTimeout(() => { this.props.context.setUser(data); }, 2000)
+
       })
       .catch((error) => {
-        console.log(error);
-        // Display error message here, if you set the state
+        this.setState({
+          httpResponse: {
+            status: "is-danger",
+            message: "Oh no! your not found here, please try again",
+          },
+        });
       });
   };
 
@@ -37,6 +51,7 @@ class FormSignin extends Component {
     if (this.props.context.user) {
       return <Redirect to="/" />;
     }
+    const { httpResponse } = this.state;
 
     return (
       <div>
@@ -47,6 +62,12 @@ class FormSignin extends Component {
             <div className="modal-card-body">
               <form className="container-form" onChange={this.handleChange} onSubmit={this.handleSubmit}>
 
+                {httpResponse && (
+                  <FeedBack
+                    message={httpResponse.message}
+                    status={httpResponse.status}
+                  />
+                )}
                 <label className="label" htmlFor="email">Email</label>
                 <div className="control">
                   <input className="input" type="email" id="email" name="email" />
