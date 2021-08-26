@@ -137,7 +137,7 @@ class Home extends Component {
                           <span>
                             {comment.text} posted by: {comment.creator.userName}
                           </span>
-                        {this.props.context.user._id === comment.creator._id &&
+                        {this.props.context.user._id === comment.creator._i &&
           
                           <button
                             onClick={() =>

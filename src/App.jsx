@@ -8,12 +8,12 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import FormMeme from "./components/Forms/FormMeme";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faChevronDown, faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faChevronDown, faCommentDots, faUser, faHashtag, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import 'bulma/css/bulma.css';
 import Settings from "./pages/Settings";
 
 
-library.add(faChevronDown, faCommentDots)
+library.add(faHome, faChevronDown, faCommentDots, faUser, faHashtag, faSignOutAlt)
 
 
 function App() {
