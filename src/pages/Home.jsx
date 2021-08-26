@@ -84,7 +84,7 @@ class Home extends Component {
                 <article className="box">
                   <p>
                     {" "}
-                    posted by {meme.creator.userName} at {meme.createdAt}
+                    posted by {meme.creator.userName} on {new Date(meme.createdAt).toLocaleDateString("en", {year: 'numeric', month: 'long', day: 'numeric' })}
                   </p>
                   <div className="imgBox">
                     <img src={meme.memeimage} alt="" className="img" />
