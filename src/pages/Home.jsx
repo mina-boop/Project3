@@ -31,9 +31,8 @@ class Home extends Component {
     apiHandler
       .deleteComments(memeId, commentId)
       .then(() => {
-        this.getComments(memeId)
+        this.getComments(memeId);
         // this.setState({ memeId: null, closeComment: false });
-
       })
       .catch((e) => console.log(e));
   };
@@ -41,16 +40,15 @@ class Home extends Component {
   handleClick = (id) => {
     if (id === this.state.memeId) {
       this.setState({ memeId: null });
-
     } else {
       this.setState({ memeId: id });
-      this.getComments(id)
+      this.getComments(id);
     }
   };
   // function that refreshes comments
   handleAddComment = (id) => {
     this.setState({ memeId: id, closeComment: false, addComment: false });
-    this.getComments(id)
+    this.getComments(id);
   };
 
   getComments(id) {
@@ -59,7 +57,7 @@ class Home extends Component {
       .then((dbRes) => {
         this.setState({
           comments: dbRes,
-          closeComment: true
+          closeComment: true,
         });
       })
       .catch((e) => console.log(e));
@@ -119,15 +117,17 @@ class Home extends Component {
                           <span>
                             {comment.text} posted by: {comment.creator.userName}
                           </span>
-                          {this.props.context.user._id === comment.creator._id &&
-
+                          {this.props.context.user._id ===
+                            comment.creator._id && (
                             <button
+                              class="delete is-small"
                               onClick={() =>
                                 this.handleDelete(comment._id, meme._id)
                               }
                             >
                               Delete
-                            </button>}
+                            </button>
+                          )}
                         </div>
                       );
                     })}
