@@ -120,8 +120,10 @@ class Home extends Component {
                         </div>
                       );
                     })}
-                 </article>
-                 </div>
+                  <span></span>
+                  <span></span>
+                </article>
+              </div>
             );
           })}
         </div>
