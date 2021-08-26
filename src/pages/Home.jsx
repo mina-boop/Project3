@@ -4,7 +4,8 @@ import apiHandler from "../api/apiHandler";
 import "bulma/css/bulma.css";
 import Signin from "./Signin";
 import FormComment from "../components/Forms/FormComment";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 
 
@@ -81,22 +82,19 @@ class Home extends Component {
                   <div className="imgBox">
                     <img src={meme.memeimage} alt="" className="img" />
 
-                    <div className="button is-small" onClick={() => {
-                      this.handleClick(meme._id)
-                    }} ><FontAwesomeIcon icon="chevron-down" /></div><span className="button is-small" onClick={this.addComment}>Comment</span>{this.state.addComment && <FormComment updateComments={this.handleAddComment} memeById={meme._id} />}
-                    {this.state.memeId === meme._id && this.state.comments.map((comment) => { return <div className="box" key={comment._id}><span>{comment.text}</span></div> })}
+                   
                     <span className="topText">{meme.caption1}</span>
                     <span className="bottomText">{meme.caption2}</span>
                   </div>
                   <span>
-                    <img
-                      className="icon"
-                      src="../comment-icon.png"
-                      alt="icon-comment"
-                    />
+                  <div className="button is-small" onClick={() => {
+                      this.handleClick(meme._id)
+                    }} ><FontAwesomeIcon icon="chevron-down" /></div><span className="button is-small" onClick={this.addComment}>Comment</span>{this.state.addComment && <FormComment updateComments={this.handleAddComment} memeById={meme._id} />}
+                    {this.state.memeId === meme._id && this.state.comments.map((comment) => { return <div className="box" key={comment._id}><span>{comment.text}</span></div> })}
+                    
                   </span>
                   <span>
-                    <Likebutton />
+                    
                   </span>
                 </article>
               </div>
