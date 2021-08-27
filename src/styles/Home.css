@@ -1,12 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');;
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 html {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
+/* *{
+  box-sizing:border-box;
+
+ border: 1px solid fuchsia;
+
+} */
 
 .container {
-  
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 50px;
@@ -22,21 +27,10 @@ article {
   text-align: center;
 }
 
-/* article img {
-  max-width: 100%;
-  height: 200px;
-  width: 200px;
-  object-fit: contain;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-} */
-
 article .imgBox {
   position: relative;
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 article .imgBox img {
@@ -44,8 +38,7 @@ article .imgBox img {
 }
 
 article .imgBox span {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 42px;
+  font-family: "Archivo Black", sans-serif;
   color: white;
   text-transform: uppercase;
   -webkit-text-stroke-width: 1px;
@@ -54,16 +47,16 @@ article .imgBox span {
 }
 
 article .imgBox .topText {
-top: 8px;
-left: 50%;
-transform: translateX(-50%);
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 article .imgBox .bottomText {
   bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
-  }
+}
 
 #main-logo {
   height: 130px;
@@ -83,4 +76,14 @@ article .imgBox .bottomText {
   border: none;
   text-decoration: none;
   margin: 20px;
+}
+.navbar-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: small;
+}
+.is-small.delete {
+  top: 2px;
+  margin-left: 4px;
 }

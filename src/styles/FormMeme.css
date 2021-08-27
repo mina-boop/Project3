@@ -22,7 +22,7 @@ body {
 }
 
 .imgBox .topText {
-  top: 8px !important;
+  top: 8px;
   left: 50%;
   transform: translateX(-50%);
 }

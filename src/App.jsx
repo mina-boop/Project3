@@ -6,14 +6,15 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
+import Logout from './pages/Logout'
 import FormMeme from "./components/Forms/FormMeme";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faChevronDown, faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faList, faCommentDots, faUser, faHashtag, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import 'bulma/css/bulma.css';
 import Settings from "./pages/Settings";
 
 
-library.add(faChevronDown, faCommentDots)
+library.add(faHome, faList, faCommentDots, faUser, faHashtag, faSignOutAlt)
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/memeform" component={FormMeme} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/logout" component={Logout} />
+
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/profile/settings" component={Settings} />
       </Switch>

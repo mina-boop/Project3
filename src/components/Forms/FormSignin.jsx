@@ -34,7 +34,7 @@ class FormSignin extends Component {
             message: "Welcome",
           },
         });
-        setTimeout(() => { this.props.context.setUser(data); }, 2000)
+        setTimeout(() => { this.props.context.setUser(data); }, 1000)
 
       })
       .catch((error) => {
