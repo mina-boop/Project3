@@ -66,6 +66,13 @@ article .imgBox .bottomText {
 .titlecolor {
   text-align: center;
   font-size: xx-large;
+  color: #fff;
+  padding-bottom: 2em;
+  padding-top: 2em;
+}
+
+.titlecolor h1{
+  font-weight: bolder;
 }
 
 .box {
