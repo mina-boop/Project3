@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
-=======
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
->>>>>>> 6ff90d33b042ea3ba63ff3b92ec5c9bb9a2c3064
 html {
   font-family: "Oswald", sans-serif;
 }
@@ -43,22 +38,12 @@ article .imgBox img {
 }
 
 article .imgBox span {
-<<<<<<< HEAD
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 24px;
-=======
   font-family: "Archivo Black", sans-serif;
->>>>>>> 6ff90d33b042ea3ba63ff3b92ec5c9bb9a2c3064
   color: white;
   text-transform: uppercase;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
   position: absolute;
-<<<<<<< HEAD
-  line-height: 1.1;
- 
-=======
->>>>>>> 6ff90d33b042ea3ba63ff3b92ec5c9bb9a2c3064
 }
 
 article .imgBox .topText {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 import "bulma/css/bulma.css";
-import "../styles/Home.css";
+import "../styles/profile.css";
 
 class Profile extends Component {
   state = {
@@ -48,28 +48,28 @@ class Profile extends Component {
         <h2>Welcome {this.state.profile.userName}</h2>
 
         <section className="profile">
-          <div>
+        <figure className="image is-128x128">
             
-              <img className="profileimg"
+              <img className="is-rounded image-profile" 
                 src={this.state.profile.profileImg}
                 alt={this.state.profile.userName}
               />
            
-          </div>
+          </figure>
           <div className="user-presentation">
             
             <Link className="link" to="/profile/settings">
-              Edit profile
+              <h3>Edit profile</h3>
             </Link>
           </div>
 
           <div className="memes">
             <h3>My memes</h3>
-            <div className="meme">
-              <div className="container">
+            
+             
                 {this.state.meme.map((meme) => {
                   return (
-                    <div className="grid">
+                    
                       <article className="box" key={meme._id}>
                         <p>Posted </p>
                         <img src={meme.memeimage} alt="" />
@@ -85,11 +85,11 @@ class Profile extends Component {
                           </span>
                         </div>
                       </article>
-                    </div>
+                   
                   );
                 })}
-              </div>
-            </div>
+             
+            
           </div>
         </section>
       </div>

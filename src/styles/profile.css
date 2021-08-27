@@ -1,11 +1,11 @@
 
-
+/* 
 *{
   box-sizing:border-box;
 
  border: 1px solid fuchsia;
 
-}
+} */
 body {
     font-size: 20px;
     font-weight: 700;
@@ -16,9 +16,47 @@ body {
   width: 50px;
   height:20px;
   font-size:200%;
-  line-height: 5;
-  box-sizing: content-box;
+  line-height:1em;
+  
+
+}
+
+.image-profile{
+  max-width: 1000px;
+  max-height: 300px;
+  margin-top: 50px;
 
 
 }
 
+.profile-container{
+
+  margin-left: 50px;
+  margin-top: 50px;
+  
+  border:solid fuchsia;
+
+
+}
+
+.link{
+  
+  font-size: medium;
+  
+}
+
+/* .user-presentation {
+
+  width: 500px;
+  margin-top: 100px;
+  margin-left: 0px;
+} */
+
+.memes {
+
+ border:solid fuchsia;
+ width: 1000px;
+ 
+
+  
+}
