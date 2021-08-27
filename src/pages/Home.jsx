@@ -99,7 +99,7 @@ class Home extends Component {
 
     return (
       <div>
-        <div className="titlecolor">
+        <div className="titlecolor ">
           <h1>New & Fresh</h1>
         </div>
         <Signin />
